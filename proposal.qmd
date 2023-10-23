@@ -78,7 +78,9 @@ covidData |>
 ```{r}
 #| label: load-data-2
 
-# add code here
+Athletes <- read_csv("data/Athletes.csv")
+
+glimpse(Athletes)
 ```
 
 # Data 3
