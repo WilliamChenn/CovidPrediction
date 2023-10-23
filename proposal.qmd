@@ -118,6 +118,7 @@ glimpse(Athletes)
 
 ```{r}
 #| label: load-data-3
-
+cosemetics <- read_csv("data/cscpopendata.csv")
+glimpse(cosemetics)
 # add code here
 ```
