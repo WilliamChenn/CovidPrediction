@@ -16,11 +16,17 @@ library(tidyverse)
 
 ## Introduction and data
 
--   Identify the source of the data.
+-   **Identify the source of the data.**
 
--   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
+    -   The data is sourced from the National Center for Health Statistics (NCHS)
 
--   Write a brief description of the observations.
+-   **State when and how it was originally collected (by the original data curator, not necessarily how you found the data).**
+
+    -   Data are updated weekly. The provisional counts for COVID-19 deaths are based on a current flow of mortality data in the National Vital Statistics System. National provisional counts include deaths occurring within the 50 states and the District of Columbia that have been received and coded as of the date specified
+
+-   **Write a brief description of the observations.**
+
+    -   Each Observation is a COVID-19 deaths by age group, sex, week and state
 
 ## Research question
 
@@ -43,8 +49,7 @@ library(tidyverse)
 ```{r}
 #| label: load-data-1
 covidData <- read_csv("data/Covid19Dataset.csv")
-covidData |>
-  glimpse()
+glimpse(covidData)
 ```
 
 # Data 2
