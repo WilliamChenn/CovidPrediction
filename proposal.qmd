@@ -30,7 +30,7 @@ library(tidyverse)
 
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
-## Literature 
+## Literature
 
 -   Find one published credible article on the topic you are interested in researching.
 
@@ -42,8 +42,9 @@ library(tidyverse)
 
 ```{r}
 #| label: load-data-1
-
-# add code here
+covidData <- read_csv("data/Covid19Dataset.csv")
+covidData |>
+  glimpse()
 ```
 
 # Data 2
@@ -64,7 +65,7 @@ library(tidyverse)
 
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
-## Literature 
+## Literature
 
 -   Find one published credible article on the topic you are interested in researching.
 
@@ -98,7 +99,7 @@ library(tidyverse)
 
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
-## Literature 
+## Literature
 
 -   Find one published credible article on the topic you are interested in researching.
 
