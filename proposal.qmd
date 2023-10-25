@@ -82,9 +82,7 @@ glimpse(covidData)
 
 ```{r}
 #| label: load-data-2
-
 Athletes <- read_csv("data/Athletes.csv")
-
 glimpse(Athletes)
 ```
 
@@ -94,9 +92,15 @@ glimpse(Athletes)
 
 -   Identify the source of the data.
 
+    -   **California Safe Cosmetics Program in the California Department of Public Health**
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
+    -   
+
 -   Write a brief description of the observations.
+
+    -   
 
 ## Research question
 
@@ -120,5 +124,4 @@ glimpse(Athletes)
 #| label: load-data-3
 cosemetics <- read_csv("data/cscpopendata.csv")
 glimpse(cosemetics)
-# add code here
 ```
