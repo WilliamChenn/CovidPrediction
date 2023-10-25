@@ -8,7 +8,6 @@ editor: visual
 ```{r}
 #| label: load-pkgs
 #| message: false
-
 library(tidyverse)
 ```
 
@@ -96,7 +95,7 @@ glimpse(Athletes)
 
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
-    -   
+    -   **The California Safe Cosmetics Act requires manufacturers, packers, and distributors of cosmetic products in California to report ingredients linked to health risks. Companies with over \$1 million in annual cosmetic sales and products sold in California since January 1, 2007, must comply. The data includes product details, chemical information, and reporting dates submitted to the California Safe Cosmetics Program.**
 
 -   Write a brief description of the observations.
 
