@@ -17,31 +17,49 @@ library(tidyverse)
 
 -   **Identify the source of the data.**
 
-    -   The data is sourced from the National Center for Health Statistics (NCHS)
+    -   The data is sourced from the CDC's National Center for Health Statistics (NCHS).
 
 -   **State when and how it was originally collected (by the original data curator, not necessarily how you found the data).**
 
-    -   Data are updated weekly. The provisional counts for COVID-19 deaths are based on a current flow of mortality data in the National Vital Statistics System. National provisional counts include deaths occurring within the 50 states and the District of Columbia that have been received and coded as of the date specified
+    -   The data in this data set is collected and updated every week and covers information within all 50 states of the USA and the District of Columbia. The counts the number of COVID-19 deaths are based on data stored in the National Vital Statistic System. These observations are then added every week.
 
 -   **Write a brief description of the observations.**
 
-    -   Each Observation is a COVID-19 deaths by age group, sex, week and state
+    -   Each Observation of the dataset represents the count of Covid-19 death in a given week, state, specific age group, and sex. So for every single week, there will be an observation for every combination of every subgroup (state, age, group, and sex).
 
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+-   **Research Questions**
 
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
+    -   "What are the demographic and regional patterns of COVID-19 mortality in the United States, focusing on differences in death rates between age groups and sexes,?"
 
--   Identify the types of variables in your research question. Categorical? Quantitative?
+    -   This research question is important because it provides insights into COVID-19's impact on different demographic groups, which can potentially help guide public health strategies, resource allocation and help idnetify and protect more vulnerable populations/demographics.
+
+    -   "What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023?"
+
+    -   This research question allows us to see how Covid-19 mortality rates have changed over time among different age groups which helps us better understand the dynamic of the virus and how the pandemic potentially evolve.
+
+-   **A description of the research topic along with a concise statement of your hypotheses on this topic.**
+
+    -   The research topic will be to observe trends in COVID-19 deaths given different geographic groups and how these trends evolve over time. A feasible hypothesis can be that those in older age groups will have higher mortality rate compared to the rest of the demographic.
+
+-   **Identify the types of variables in your research question. Categorical? Quantitative?**
+
+    -   The types of variables in my research question include both Categorical and quantitative. Age in this context would be categorical because we are grouping age together and looking at specific age groups. The number of deaths in each observation is Quantitative. Sex and date are all categorical.
 
 ## Literature
 
--   Find one published credible article on the topic you are interested in researching.
+-   **Find one published credible article on the topic you are interested in researching.**
 
--   Provide a one paragraph summary about the article.
+    -   [*Role of Sex and Age in Fatal Outcomes of COVID-19: Women and Older Centenarians Are More Resilient*](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9916733/#:~:text=A%20study%20on%20sex%20differences,50%E2%80%9369%20%5B12%5D.)
 
--   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
+-   **Provide a one paragraph summary about the article.**
+
+    -   This paper analyzes the role of age and sex in the fatal outcome of COVID-19, addressing three questions: (1) whether women have been more resilient than men to the virus, (2) whether centenarians have a lower mortality rate than other older people, and (3) if older centenarians born before 1919 are more resistant to SARS-CoV-2 compared to younger centenarians. The research finds that women are generally more resilient to covid-19 compared to men, and even stated that men have found to have twice the mortality rate compared to women. The paper found that centenarians didn't neccessarily have lower mortality rate compared to the rest of the population. Finally paper also found that Centenarians who were born before 1919 seemed more resilient compared to other centenarians.
+
+-   **In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.**
+
+    -   My research question builds on to this article by also analyzing the varibility of mortality rates given different sexes, but by also looking at how these mortality rates vary across different age groups alongside different sexes. My reserach question will add another layer to the article by analyzing specific age groups of different sexes rather than just looking at the general different genders.
 
 ## Glimpse of data
 
