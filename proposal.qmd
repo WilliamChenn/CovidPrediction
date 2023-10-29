@@ -113,32 +113,54 @@ glimpse(Athletes)
 
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
-    -   **The California Safe Cosmetics Act requires manufacturers, packers, and distributors of cosmetic products in California to report ingredients linked to health risks. Companies with over \$1 million in annual cosmetic sales and products sold in California since January 1, 2007, must comply. The data includes product details, chemical information, and reporting dates submitted to the California Safe Cosmetics Program.**
+    -   **The California Safe Cosmetics Act required manufacturers, packers, and distributors of cosmetic products in California to report ingredients linked to health risks(cancer, birth defects, or other reproductive risks). Companies with over \$1 million in annual cosmetic sales and products sold in California since January 1, 2007, must comply. The data includes product details, chemical information, and reporting dates submitted to the California Safe Cosmetics Program.**
 
 -   Write a brief description of the observations.
 
-    -   
+    -   **Each observation is a product name sold in California containing any chemical ingredient associated with the health risks. Each company/manufacturers reported all their products that contained the ingredients, so it is possible for one company to report multiple products.**
 
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 
+    -   **"Are there chemicals more commonly associated with a specific product subcategory type?"**
+
+        -   **This question is important because it provides insight to which chemicals that are prevalent in certain product types, allowing us to understand what ingredients to look out for when purchasing the specific product subcategory. This allows consumers make more informed and cautious choices when purchasing.**
+
+    -   **"Which specific product subcategories are the most common to contain chemical ingredients across all companies?"**
+
+        -   **This question is important because it allows us to discern which product subcategories are prone to containing chemical ingredients associated with health risks. This way, we can exercise more caution in purchasing decisions or opt to avoid specific subcategories, given the common presence of such chemical ingredients.**
+
+    -   **"Which specific chemical ingredients are associated with each company/manufacturer?"**
+
+        -   **This questions allow us to understand which companies tend to include the chemical ingredients in their products. We can make informed purchasing choices with this information, such as avoiding to purchase from a specific company/manufacturer's.**
+
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
 
+    -   **The research topic will observe trends in chemical ingredients in products given the company/manufacturer, dates and specific product subcategories. A feasible hypothesis is that the Hair Dyes and Colors prroduct subcategory contains the most chemical ingredients across all subcategories. This is because hair dyes are known to contain a variety of chemical compounds, necessitating the use of protective gloves during application.**
+
 -   Identify the types of variables in your research question. Categorical? Quantitative?
+
+    -   **The types of variables in my** **research question include both categorical and quantitative variables. The subcategories and companies are considered as categorical while the dates are considered quantitative.**
 
 ## Literature
 
 -   Find one published credible article on the topic you are interested in researching.
 
+    -   [*Chemical Exposures: The Ugly Side of Beauty Products*](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1253722/)
+
 -   Provide a one paragraph summary about the article.
 
+    -   **The article discusses the raised concerns about reproductive and developmental issues that are linked to the chemical ingredients found in personal and cosmetic products. The CDC's data highlights the increase in male reproductive problems over the past years, which could possibly be attributed to the chemicals. There have bee reports from different environmental organizations which emphasize the presence of potentially harmful chemicals in these products. Environmental organizations advocate for increased transparency in product ingredients allow consumers to make more informed purchasing choices. The organizations emphasizes the importance of providing resources and tools for individuals to make their purchase decisions, whether they are willing to accept the risk or not.**
+
 -   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
+
+    -   **My research builds on this article as it provides information and analyzing the various chemical ingredients found in popular products and big-name cosmetic companies that people are buying from worldwide. It sheds light on the prevalence of these harmful chemical ingredients, an issue that hasn't really received adequate public attention, resources, or information. My research questions build on this article by analyzing deeper into the specific subcategories and large companies that are universally bought from, aiming to identify which ones may carry a higher risk factor.**
 
 ## Glimpse of data
 
 ```{r}
 #| label: load-data-3
-cosemetics <- read_csv("data/cscpopendata.csv")
-glimpse(cosemetics)
+cosmetics <- read_csv("data/cscpopendata.csv")
+glimpse(cosmetics)
 ```
