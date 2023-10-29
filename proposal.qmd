@@ -74,58 +74,42 @@ glimpse(covidData)
 ## Introduction and data
 
 -   Identify the source of the data.
-    - The data is sources from data.world.  
-    
+
+    -   The data is sources from data.world.
 
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
-  - The original data was collected by CrossFit Headquarters (CFHQ). The data 
-  was made into a more comprehensible manner by a statistician named Sam Swift,
-  which was then shrunk and posted on data.world by Brandon Gadoci.
+
+-   The original data was collected by CrossFit Headquarters (CFHQ). The data was made into a more comprehensible manner by a statistician named Sam Swift, which was then shrunk and posted on data.world by Brandon Gadoci.
 
 -   Write a brief description of the observations.
-  - Each observation represents an individual in the crossfit world with 
-  information including their region, gender, age along with their crossfit stats
-  like their back squad max, 400m run time, and other lifts. 
+
+-   Each observation represents an individual in the crossfit world with information including their region, gender, age along with their crossfit stats like their back squad max, 400m run time, and other lifts.
 
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
-  - What is the relationship between gender and max back squad weights, and
-  how does this relationship change in relation with age? Do men and women
-  have similar prime years? 
-  
-  - What is the relationship between weight and height with max deadlift weight
-  and which is a better indicator for estimating the max deadlift weight?
+
+-   What is the relationship between gender and max back squad weights, and how does this relationship change in relation with age? Do men and women have similar prime years?
+
+-   What is the relationship between weight and height with max deadlift weight and which is a better indicator for estimating the max deadlift weight?
 
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
-  - The research topic would be relating gender and age to physical abilities in the field
-  of cross fit. A viable hypothesis would be that the average male max back squad is
-  higher than the average female max back squat. However, this gap would shrink 
-  for older individuals. 
+
+-   The research topic would be relating gender and age to physical abilities in the field of cross fit. A viable hypothesis would be that the average male max back squad is higher than the average female max back squat. However, this gap would shrink for older individuals.
 
 -   Identify the types of variables in your research question. Categorical? Quantitative?
-  - There are both types of variables within my research question. Variables like gender and potentialy age (if viewed in a matter of ranges) would be categocial, while other variables
-  like max back squad and deadlift would be quantitiative.
-  
+
+-   There are both types of variables within my research question. Variables like gender and potentialy age (if viewed in a matter of ranges) would be categocial, while other variables like max back squad and deadlift would be quantitiative.
 
 ## Literature
 
--   Find one published credible article on the topic you are interested in researching.
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7470362/ 
+-   Find one published credible article on the topic you are interested in researching. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7470362/
 
--   Provide a one paragraph summary about the article.
-This article dives into looking at the difference in weight lifted for genders at various age 
-ranges. It looked at individuals participating in Olympic weightlifting competitions only. 
-It concluded that gender and body weight had little affect at younger ages as they all 
-seemed to perform similarly. However, as boys hit their prime puberty years, it is noted
-that the gap begins to widen. They concluded that this analysis could be useful
-when attempting to understand an athlete's trajectory. 
+-   Provide a one paragraph summary about the article. This article dives into looking at the difference in weight lifted for genders at various age ranges. It looked at individuals participating in Olympic weightlifting competitions only. It concluded that gender and body weight had little affect at younger ages as they all seemed to perform similarly. However, as boys hit their prime puberty years, it is noted that the gap begins to widen. They concluded that this analysis could be useful when attempting to understand an athlete's trajectory.
 
 -   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
-- My research question builds on the article as it looks into a different category of
-athletes In addition, also looks into when each gender's prime tends to be along with 
-if the gap remains large or begins to shrink in senior years for individuals. 
-## Glimpse of data
+
+-   Our research question builds on the article as it looks into a different category of athletes In addition, also looks into when each gender's prime tends to be along with if the gap remains large or begins to shrink in senior years for individuals. \## Glimpse of data
 
 ```{r}
 #| label: load-data-2
