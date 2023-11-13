@@ -24,6 +24,7 @@ covidData <- read_csv("data/Covid19Dataset.csv")
 ```
 
 ```{r}
+#｜label: take out all ages, keep only all sex
 covidData_Ages <- covidData |>
   filter(!str_detect(`Age Group`,"All Ages"),str_detect(Sex, "All Sex"),ignore_case = TRUE)
 covidData_Ages
@@ -47,10 +48,19 @@ ggplot(
 From our visualization, we can conclude that that the median of COVID-19 Deaths of those 85 years and over is the highest. This trend stays mostly consistent throughout: as the age group increases, the median number of COVID-19 Deaths increase.
 
 ```{r}
-
+#| label: take_out_all sex and keep only all ages
 covidData_sex <- covidData |>
-  filter(!str_detect(Sex,"All Sex"),ignore_case=TRUE)
-covidData_sex
+  filter(!str_detect(Sex,"All Sex"),str_detect(`Age Group`,"All Ages"),ignore_case=TRUE)
+
+covidData_sex |>
+  ggplot(aes(x = Sex, y = `COVID-19 Deaths`, fill = Sex)) +
+    geom_bar(stat = "identity", width = 0.7) +
+    labs(title = "Total COVID-19 Deaths by Sex",
+         subtitle = "From 01/04/2020 to 06/24/2023",
+         x = "Sex",
+         y = "COVID-19 Deaths (Thousands)") +
+    scale_y_continuous(labels = scales::comma_format(scale = 1e-3)) +
+    theme(legend.position = "none")
 ```
 
 Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Sex," which includes both Males and Females in the
