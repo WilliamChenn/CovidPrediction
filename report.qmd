@@ -13,9 +13,14 @@ This should be your writing from your proposal, updated based on feedback given.
 
 Then identify the source of the data, when and how it was collected, the cases, a general description of relevant variables.
 
+The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the paterns of Covid-19 related mortality in the United States in correlation with demographic and geographic factors trying to solve the question. 
+
+
+The data in this data set is collected and updated every week and covers information within all 50 states of the USA and the District of Columbia. The counts the number of COVID-19 deaths are based on data stored in the National Vital Statistic System. These observations are then added every week. Each Observation of the dataset represents the count of Covid-19 death in a given week, state, specific age group, and sex. So for every single week, there will be an observation for every combination of every subgroup (state, age, group, and sex). What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023?" This research question allows us to see how Covid-19 mortality rates have changed over time among different age groups which helps us better understand the dynamic of the virus and how the pandemic potentially evolve. The research topic will be to observe trends in COVID-19 deaths given different geographic groups and how these trends evolve over time. A feasible hypothesis can be that those in older age groups will have higher mortality rate compared to the rest of the demographic. The types of variables in my research question include both Categorical and quantitative. Age in this context would be categorical because we are grouping age together and looking at specific age groups. The number of deaths in each observation is Quantitative. Sex and date are all categorical.
+
 #### Methodology
 
-The methodology section should include visualizations and summary statistics **relevant to your research question**. You are required to provide writing that explains the trends / patterns the visualization(s) displays as it relates to your research question. This writing can be treated as a \"rough draft\" for your final, but should also provide enough detail to **state and justify** the choice of statistical method(s) used to answer your research question.
+The methodology section should include visualizations and summary statistics **relevant to your research question**. You are required to provide writing that explains the trends / patterns the visualization(s) displays as it relates to your research question. This writing can be treated as a "rough draft" for your final, but should also provide enough detail to **state and justify** the choice of statistical method(s) used to answer your research question.
 
 #### Results
 
