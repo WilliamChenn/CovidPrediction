@@ -65,6 +65,20 @@ covidData_sex |>
 
 For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. We used a barplot to visualize the relationship between total deaths of male compared to females.
 
+
+```{r}
+#| label: linear regression equation for both models
+modelsex <-linear_reg() |>
+  set_engine("lm") |>
+  fit(`COVID-19 Deaths` ~ Sex , data = covidData_sex)
+glance(modelsex)$r.squared
+
+modelage <- linear_reg() |>
+  set_engine("lm") |>
+  fit(`COVID-19 Deaths` ~ `Age Group` , data = covidData_Ages)
+glance(modelage)$r.squared
+
+```
 #### Results
 
 Provide results from your analysis that answer your research question. Reminder, the goal is not calculate every possible statistic and perform every possible procedure for all variables. You should demonstrate that you are proficient at asking meaningful questions and answering them using data, that you are skilled in interpreting and presenting results, and that you can accomplish these tasks using R. More is not better.
