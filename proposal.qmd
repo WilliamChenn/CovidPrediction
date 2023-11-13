@@ -9,6 +9,8 @@ editor: visual
 #| label: load-pkgs
 #| message: false
 library(tidyverse)
+library(dplyr)
+library(tidymodels)
 ```
 
 # Data 1
