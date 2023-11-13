@@ -30,7 +30,7 @@ covidData_Ages <- covidData |>
 covidData_Ages
 ```
 
-Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap. After dropping these rows in the "Ages" columns, we were able to graph our box plo visualization of the COVID-19 Deaths and each age group.
+Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap. After dropping these rows in the "Ages" columns, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
 
 ```{r}
 covidData_Ages |>
@@ -63,7 +63,7 @@ covidData_sex |>
     theme(legend.position = "none")
 ```
 
-Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Sex," which includes both Males and Females in the
+For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. We used a barplot to visualize the relationship between total deaths of male compared to females.
 
 #### Results
 
