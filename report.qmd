@@ -7,4 +7,36 @@ execute:
   echo: true
 ---
 
-Add project writeup here.
+#### Introduction and data
+
+This should be your writing from your proposal, updated based on feedback given. As a reminder, the introduction provides motivation and context for your research. Describe your topic (citing sources) and provide a concise, clear statement of your research question and hypotheses. Additionally, consider any potential ethical issues that you believe should be addressed (if any) regarding how your data were collected.
+
+Then identify the source of the data, when and how it was collected, the cases, a general description of relevant variables.
+
+#### Methodology
+
+The methodology section should include visualizations and summary statistics **relevant to your research question**. You are required to provide writing that explains the trends / patterns the visualization(s) displays as it relates to your research question. This writing can be treated as a \"rough draft\" for your final, but should also provide enough detail to **state and justify** the choice of statistical method(s) used to answer your research question.
+
+#### Results
+
+Provide results from your analysis that answer your research question. Reminder, the goal is not calculate every possible statistic and perform every possible procedure for all variables. You should demonstrate that you are proficient at asking meaningful questions and answering them using data, that you are skilled in interpreting and presenting results, and that you can accomplish these tasks using R. More is not better.
+
+You are encouraged to provide writing that interprets your results and answers your research question. This includes writing a **scope of inference**. The writing is optional for the draft, but will be a requirement on the final.
+
+#### Workflow + Formatting
+
+To earn full credit, please be mindful of the following:
+
+Have an updated `about` qmd for your project.
+
+Responded to / Closed all *issues* from your proposal from chosen data set.
+
+Your website must be able to be rendered by me and your lab leader prior to submission.
+
+**EVERYONE** in your group must have at least 3 commits.
+
+Pipes %\>%, \|\> and ggplot layers + should be followed by a new line.
+
+All binary operators should be surrounded by space. For example x + y is appropriate. x+y is not.
+
+All team members should contribute to the GitHub repository, with **regular meaningful commits.**
