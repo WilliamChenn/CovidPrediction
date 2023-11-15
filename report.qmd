@@ -7,6 +7,15 @@ execute:
   echo: true
 ---
 
+```{r}
+#| label: load-Packages
+#| message: false
+library(tidyverse)
+library(dplyr)
+library(tidymodels)
+
+```
+
 #### Introduction and data
 
 The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the paterns of Covid-19 related mortality in the United States in correlation with demographic factors. The data in this data set is collected and updated every week and covers information within all 50 states of the USA and the District of Columbia. The counts the number of COVID-19 deaths are based on data stored in the National Vital Statistic System. These observations are then added every week. Each Observation of the dataset represents the count of Covid-19 death in a given week, state, specific age group, and sex. So for every single week, there will be an observation for every combination of every subgroup (state, age, group, and sex). The data is sourced from the CDC's National Center for Health Statistics (NCHS, 2023). Our research question is: What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? This research question allows us to see how Covid-19 mortality rates have changed over time among different age groups which helps us better understand the dynamic of the virus and how the pandemic potentially evolve. The research topic will be to observe trends in COVID-19 deaths given different geographic groups and how these trends evolve over time. A feasible hypothesis can be that those in older age groups will have higher mortality rate compared to the rest of the demographic. The types of variables in my research question include both Categorical and quantitative. Age in this context would be categorical because we are grouping age together and looking at specific age groups. The number of deaths in each observation is Quantitative. Sex and date are all categorical.
@@ -65,6 +74,33 @@ covidData_sex |>
 
 For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. We used a barplot to visualize the relationship between total deaths of male compared to females.
 
+```{r}
+#| label: make age numerical
+
+newAges <- covidData_Ages |> #make ages numerical from 1-11 and then 
+  mutate(`Age Group` = case_when( #take out all ages, keep only all sex (no male/female)
+    `Age Group` == "Under 1 year"   ~ 1,
+    `Age Group` == "1-4 Years"      ~ 2,
+    `Age Group` == "5-14 Years"     ~ 3,
+    `Age Group` == "15-24 Years"    ~ 4,
+    `Age Group` == "25-34 Years"    ~ 5,
+    `Age Group` == "35-44 Years"    ~ 6,
+    `Age Group` == "45-54 Years"    ~ 7,
+    `Age Group` == "55-64 Years"    ~ 8,
+    `Age Group` == "65-74 Years"    ~ 9,
+    `Age Group` == "75-84 Years"    ~ 10,
+    `Age Group` == "85 Years and Over"~ 11,
+  ))
+
+newAges |>
+  ggplot(
+    aes(
+      x = `Age Group`, y = `COVID-19 Deaths`
+    )
+  ) +
+  geom_point()+
+  geom_smooth(method = "lm", se = F)
+```
 
 ```{r}
 #| label: linear regression equation for both models
@@ -75,10 +111,11 @@ glance(modelsex)$r.squared
 
 modelage <- linear_reg() |>
   set_engine("lm") |>
-  fit(`COVID-19 Deaths` ~ `Age Group` , data = covidData_Ages)
+  fit(`COVID-19 Deaths` ~ `Age Group` , data = newAges)
 glance(modelage)$r.squared
 
 ```
+
 #### Results
 
 Provide results from your analysis that answer your research question. Reminder, the goal is not calculate every possible statistic and perform every possible procedure for all variables. You should demonstrate that you are proficient at asking meaningful questions and answering them using data, that you are skilled in interpreting and presenting results, and that you can accomplish these tasks using R. More is not better.
