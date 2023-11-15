@@ -92,30 +92,6 @@ newAges <- covidData_Ages |> #make ages numerical from 1-11 and then
     `Age Group` == "85 Years and Over"~ 11,
   ))
 
-newAges |>
-  ggplot(
-    aes(
-      x = `Age Group`, y = `COVID-19 Deaths`
-    )
-  ) +
- geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  scale_x_continuous(
-    breaks = 1:11,  # Set breaks for x-axis ticks
-    labels = c(
-      "Under 1 year", "1-4 Years", "5-14 Years", "15-24 Years", "25-34 Years",
-      "35-44 Years", "45-54 Years", "55-64 Years", "65-74 Years", "75-84 Years",
-      "85 Years and Over"
-    )  # Set labels for x-axis ticks
-  ) +
-  labs(
-    x = "Age Group", 
-    y = "COVID-19 Deaths",
-    title = "Age vs. Covid-19 Deaths",
-    caption = "Each point corresponds to one week") +
-  theme_minimal() +
-  theme(legend.position = "top", axis.text.x = element_text(angle = 45, hjust = 1)) +
-  guides(color = guide_legend(title = "Age Group"))
 ```
 
 ```{r}
@@ -176,6 +152,36 @@ tidy(AgeSexlm)
 $$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
 Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}
 $$
+
+```{r}
+#| label: visualization
+
+newAgeSex |>
+  ggplot(
+    aes(
+      x = `Age Group`, y = `COVID-19 Deaths`, color = Sex
+    )
+  ) +
+ geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_x_continuous(
+    breaks = 1:11,  # Set breaks for x-axis ticks
+    labels = c(
+      "Under 1 year", "1-4 Years", "5-14 Years", "15-24 Years", "25-34 Years",
+      "35-44 Years", "45-54 Years", "55-64 Years", "65-74 Years", "75-84 Years",
+      "85 Years and Over"
+    )  # Set labels for x-axis ticks
+  ) +
+  labs(
+    x = "Age Group", 
+    y = "COVID-19 Deaths",
+    title = "Age vs. Covid-19 Deaths",
+    caption = "Each point corresponds to one week") +
+  theme_minimal() +
+  theme(legend.position = "top", axis.text.x = element_text(angle = 45, hjust = 1)) +
+  guides(color = guide_legend(title = "Age Group"))
+
+```
 
 1.  maybe interpret r squared and then say which one is better
 2.  fit the linear regression model again this time and write the equations. you can choose to do the age one and the sex one seperatoly or together either is fine, just make sure u use the right dataset. if you do both at the same time, you'll need to get rid of all ages AND all gender columns. and make sure to use my numerical converted ages data "new ages"
