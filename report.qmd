@@ -183,10 +183,7 @@ newAgeSex |>
 
 ```
 
-1.  maybe interpret r squared and then say which one is better
-2.  fit the linear regression model again this time and write the equations. you can choose to do the age one and the sex one seperatoly or together either is fine, just make sure u use the right dataset. if you do both at the same time, you'll need to get rid of all ages AND all gender columns. and make sure to use my numerical converted ages data "new ages"
-3.  interpret the equations
-4.  Maybe do hypothesis testing, maybe not.
+There is evidence that the relationship between mortality and age is different by gender because the slope of each line of best fit for each gender is different. Male mortality increases by a greater amount for every increment in age group when compared to Female.
 
 #### Results
 
