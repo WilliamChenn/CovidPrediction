@@ -131,9 +131,10 @@ modelage <- linear_reg() |>
 glance(modelage)$r.squared
 
 ```
-The R^2 coefficient for the sex model is 0.0099, which indicates that 0.99% of the variation in the COVID-19 deaths is explained by sex. This is a relatively low R^2 coefficient, suggesting that this model may not be a good or accurate fit for the data set. The majority of the variability remains unexplained.
 
-The R^2 coefficient for the age model is 0.30, which indiciates that 30% of the variation in the COVID-19 deaths is explained by age, specifically their age group. This R^2 coefficient is significantly higher than the R^2 coefficient for the sex model. This means that the age model is able to account for a moderate portion of the variation observed in COVID-19 deaths based on age groups. However, there is still a decent portion of the data that remains unexplained by the "Age Group" variable. 
+The R\^2 coefficient for the sex model is 0.0099, which indicates that 0.99% of the variation in the COVID-19 deaths is explained by sex. This is a relatively low R\^2 coefficient, suggesting that this model may not be a good or accurate fit for the data set. The majority of the variability remains unexplained.
+
+The R\^2 coefficient for the age model is 0.30, which indiciates that 30% of the variation in the COVID-19 deaths is explained by age, specifically their age group. This R\^2 coefficient is significantly higher than the R\^2 coefficient for the sex model. This means that the age model is able to account for a moderate portion of the variation observed in COVID-19 deaths based on age groups. However, there is still a decent portion of the data that remains unexplained by the "Age Group" variable.
 
 ```{r}
 newAgeSex <- covidData |>
@@ -154,6 +155,7 @@ newAgeSex <- covidData |>
   drop_na(`Age Group`)
 newAgeSex
 ```
+
 This new dataset is created to remove all the rows with "All Sex" and "All Age" groups. This way, we can introduce the AiC model to analyze both of the variables as predictors, which wouldn't be accurate if we kept the "All Sex" and "All Age" groups. This is because by removing these "All" groups, we ensure that our analysis focuses on specific categories, namely "female" and "male" for sex, and individual age groups.
 
 ```{r}
@@ -161,7 +163,8 @@ lm_fwd <- lm(`COVID-19 Deaths` ~ `Age Group`, data = newAgeSex)
 
 stepAIC(lm_fwd,  scope = ~`Age Group` + `Sex`, direction = "forward")
 ```
-Because the AIC is lower for models with the two predictors 'Age Group' and 'Sex', compared to the model with only the 'Age Group' model, then the model with both predictors is better-fitting because AIC rewards models that provide a good fit to the data. Models that can explain a large portion of the data's variation receive a higher score. 
+
+Because the AIC is lower for models with the two predictors 'Age Group' and 'Sex', compared to the model with only the 'Age Group' model, then the model with both predictors is better-fitting because AIC rewards models that provide a good fit to the data. Models that can explain a large portion of the data's variation receive a higher score.
 
 ```{r}
 AgeSexlm<- linear_reg() |>
@@ -169,8 +172,10 @@ AgeSexlm<- linear_reg() |>
   fit(`COVID-19 Deaths`~ `Age Group` * Sex, data = newAgeSex) 
 tidy(AgeSexlm)
 ```
-$$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Male + 9.434*AgeGroup*Male$$
 
+$$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
+Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}
+$$
 
 1.  maybe interpret r squared and then say which one is better
 2.  fit the linear regression model again this time and write the equations. you can choose to do the age one and the sex one seperatoly or together either is fine, just make sure u use the right dataset. if you do both at the same time, you'll need to get rid of all ages AND all gender columns. and make sure to use my numerical converted ages data "new ages"
