@@ -98,8 +98,24 @@ newAges |>
       x = `Age Group`, y = `COVID-19 Deaths`
     )
   ) +
-  geom_point()+
-  geom_smooth(method = "lm", se = F)
+ geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_x_continuous(
+    breaks = 1:11,  # Set breaks for x-axis ticks
+    labels = c(
+      "Under 1 year", "1-4 Years", "5-14 Years", "15-24 Years", "25-34 Years",
+      "35-44 Years", "45-54 Years", "55-64 Years", "65-74 Years", "75-84 Years",
+      "85 Years and Over"
+    )  # Set labels for x-axis ticks
+  ) +
+  labs(
+    x = "Age Group", 
+    y = "COVID-19 Deaths",
+    title = "Age vs. Covid-19 Deaths",
+    caption = "Each point corresponds to one week") +
+  theme_minimal() +
+  theme(legend.position = "top", axis.text.x = element_text(angle = 45, hjust = 1)) +
+  guides(color = guide_legend(title = "Age Group"))
 ```
 
 ```{r}
@@ -111,7 +127,7 @@ glance(modelsex)$r.squared
 
 modelage <- linear_reg() |>
   set_engine("lm") |>
-  fit(`COVID-19 Deaths` ~ `Age Group` , data = newAges)
+  fit(`COVID-19 Deaths` ~ `Age Group`, data = newAges)
 glance(modelage)$r.squared
 
 ```
