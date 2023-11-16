@@ -152,7 +152,7 @@ tidy(AgeSexlm)
 $$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
 Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}$$
 
-Holding gender constant, every increase in age group will result in 101.024 increase in mortality cases.
+Holding gender constant, every increase in age group will result in 91.59 increase in mortality cases.
 
 ```{r}
 #| label: visualization
@@ -192,7 +192,9 @@ Provide results from your analysis that answer your research question. Reminder,
 
 You are encouraged to provide writing that interprets your results and answers your research question. This includes writing a **scope of inference**. The writing is optional for the draft, but will be a requirement on the final.
 
-**Summary** In summary, our research project looked into determining a relationship between factors like age and sex with Covid-19 mortality rates. In terms of age, the data indicated a result similar to the alternative hypothesis in that older individuals will have a higher mortality rate. However, with a R\^2 value approximately 30%, that leaves majority of the variability unexplained. In context, this would indicate that old age may be a factor in higher morality rates, but there are likely many other factors that are also associated with Covid-19 mortality rates. Since our data was collected in a manner that was neither random assignment nor random sampling, the results found would not be generalizable and not causal.
+**Summary** In summary, our research project looked into determining a relationship between factors like age and sex with Covid-19 mortality rates. In terms of age, the data indicated a result similar to the alternative hypothesis in that older individuals will have a higher mortality rate. However, with a $R^2$ value approximately 30%, that leaves majority of the variability unexplained. In context, this would indicate that old age may be a factor in higher morality rates, but there are likely many other factors that are also associated with Covid-19 mortality rates. Since our data was collected in a manner that was neither random assignment nor random sampling, the results found would not be generalizable and not causal.
+
+In terms of sex, the data seems to suggest that males are more prone to death when it comes to Covid-19 cases. However, with a $R^2$ value of 0.001, that means most of the random variables are unexplained. The implications behind this $R^2$ value is that gender has almost no implication on Covid-19 mortality rate.
 
 #### Workflow + Formatting
 
