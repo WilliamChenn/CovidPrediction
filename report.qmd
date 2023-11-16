@@ -150,10 +150,11 @@ tidy(AgeSexlm)
 ```
 
 $$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
-Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}
-$$
+Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}$$
 
-Holding gender constant, every increase in age group will result in .... Increase in mortality
+
+Holding gender constant, every increase in age group will result in 101.024 increase in mortality
+cases.
 
 ```{r}
 #| label: visualization
