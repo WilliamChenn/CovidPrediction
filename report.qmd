@@ -18,50 +18,15 @@ library(MASS)
 
 #### Introduction and data
 
-The global outbreak of COVID-19 has created a need for comprehensive data to 
-understand the impact that the virus held. This research seeks to uncover the 
-paterns of Covid-19 related mortality in the United States in correlation with
-demographic factors. The data in this data set is collected and updated every 
-week and covers information within all 50 states of the USA and the District of
-Columbia. The counts the number of COVID-19 deaths are based on data stored in 
-the National Vital Statistic System. These observations are then added every 
-week. Each Observation of the dataset represents the count of Covid-19 death in
-a given week, state, specific age group, and sex. So for every single week, 
-there will be an observation for every combination of every subgroup (state, age,
-group, and sex). The data is sourced from the CDC's National Center for Health 
-Statistics (NCHS, 2023). Our research question is: What is the relationship between
-age groups and COVID-19 mortality rates in the United States over time, and 
-how have these rates evolved from the start of the pandemic until June 28, 2023?
-This research question allows us to see how Covid-19 mortality rates have 
-changed over time among different age groups which helps us better understand 
-the dynamic of the virus and how the pandemic potentially evolve. The research 
-topic will be to observe trends in COVID-19 deaths given different geographic 
-groups and how these trends evolve over time. A feasible hypothesis can be that 
-those in older age groups will have higher mortality rate compared to the rest 
-of the demographic. The types of variables in my research question include both 
-Categorical and quantitative. Age in this context would be categorical because 
-we are grouping age together and looking at specific age groups. The number of 
-deaths in each observation is Quantitative. Sex and date are all categorical.
+The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the paterns of Covid-19 related mortality in the United States in correlation with demographic factors. The data in this data set is collected and updated every week and covers information within all 50 states of the USA and the District of Columbia. The counts the number of COVID-19 deaths are based on data stored in the National Vital Statistic System. These observations are then added every week. Each Observation of the dataset represents the count of Covid-19 death in a given week, state, specific age group, and sex. So for every single week, there will be an observation for every combination of every subgroup (state, age, group, and sex). The data is sourced from the CDC's National Center for Health Statistics (NCHS, 2023). Our research question is: What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? This research question allows us to see how Covid-19 mortality rates have changed over time among different age groups which helps us better understand the dynamic of the virus and how the pandemic potentially evolve. The research topic will be to observe trends in COVID-19 deaths given different geographic groups and how these trends evolve over time. A feasible hypothesis can be that those in older age groups will have higher mortality rate compared to the rest of the demographic. The types of variables in my research question include both Categorical and quantitative. Age in this context would be categorical because we are grouping age together and looking at specific age groups. The number of deaths in each observation is Quantitative. Sex and date are all categorical.
 
-Given the nature of health data, it is essential to acknowledge and address 
-potential ethical considerations. The data used in this dataset is annonymized
-and aggregate, which adheres to the highest standard of privacy. This allows 
-the overarching goal of valuable significant insights while respecting the 
-confidentiality of individuals involved in the dataset.
+Given the nature of health data, it is essential to acknowledge and address potential ethical considerations. The data used in this dataset is annonymized and aggregate, which adheres to the highest standard of privacy. This allows the overarching goal of valuable significant insights while respecting the confidentiality of individuals involved in the dataset.
 
 #### Methodology
 
-The methodology section should include visualizations and summary statistics
-**relevant to your research question**. You are required to provide writing 
-that explains the trends / patterns the visualization(s) displays as it
-relates to your research question. This writing can be treated as a "rough draft" 
-for your final, but should also provide enough detail to **state and justify** 
-the choice of statistical method(s) used to answer your research question.
+The methodology section should include visualizations and summary statistics **relevant to your research question**. You are required to provide writing that explains the trends / patterns the visualization(s) displays as it relates to your research question. This writing can be treated as a "rough draft" for your final, but should also provide enough detail to **state and justify** the choice of statistical method(s) used to answer your research question.
 
-**Research Question:** "What is the relationship between age groups and COVID-19 
-mortality rates in the United States over time, and how have these rates evolved
-from the start of the pandemic until June 28, 2023? What about the relationship
-between sex and COVID-19 mortality rate?"
+**Research Question:** "What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? What about the relationship between sex and COVID-19 mortality rate?"
 
 ```{r}
 covidData <- read_csv("data/Covid19Dataset.csv")
@@ -74,16 +39,7 @@ covidData_Ages <- covidData |>
 covidData_Ages
 ```
 
-Because the dataset contains all possible combinations of sex and age groups
-given a specific end week, we decided to drop all observations with "All Ages," 
-which includes all ages in each observation, which would not allow us to 
-visualize the relationship between COVID-19 deaths and specific age groups. 
-Furthermore, we filtered the dataset to only include the Sex of "All Sex" 
-because it already includes both the female and male data(Female data + male 
-data = All Set Data). If we included the separate female and male observations,
-then the data would overlap. After dropping these rows in the "Ages" columns, 
-we were able to graph our box plot visualization of the COVID-19 Deaths and 
-each age group.
+Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap. After dropping these rows in the "Ages" columns, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
 
 ```{r}
 covidData_Ages |>
@@ -98,10 +54,7 @@ ggplot(
    theme(legend.position = "none")
 ```
 
-From our visualization, we can conclude that that the median of COVID-19 
-Deaths of those 85 years and over is the highest. This trend stays mostly 
-consistent throughout: as the age group increases, the median number of 
-COVID-19 Deaths increase.
+From our visualization, we can conclude that that the median of COVID-19 Deaths of those 85 years and over is the highest. This trend stays mostly consistent throughout: as the age group increases, the median number of COVID-19 Deaths increase.
 
 ```{r}
 #| label: take_out_all sex and keep only all ages
@@ -119,16 +72,13 @@ covidData_sex |>
     theme(legend.position = "none")
 ```
 
-For the same reason as above, we filtered the dataset to drop all sex and only 
-keep rows that are all ages so there isn't repetition. We used a barplot to 
-visualize the relationship between total deaths of male compared to females.
+For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. We used a barplot to visualize the relationship between total deaths of male compared to females.
 
 ```{r}
 #| label: make age numerical
 
 newAges <- covidData_Ages |> #make ages numerical from 1-11 and then 
   mutate(`Age Group` = case_when( #take out all ages, keep only all sex
-    (no male/female)
     `Age Group` == "Under 1 year"   ~ 1,
     `Age Group` == "1-4 Years"      ~ 2,
     `Age Group` == "5-14 Years"     ~ 3,
@@ -158,19 +108,9 @@ glance(modelage)$r.squared
 
 ```
 
-The R\^2 coefficient for the sex model is 0.0099, which indicates that 0.99% 
-of the variation in the COVID-19 deaths is explained by sex. This is a 
-relatively low R\^2 coefficient, suggesting that this model may not be a good
-or accurate fit for the data set. The majority of the variability remains 
-unexplained.
+The R\^2 coefficient for the sex model is 0.0099, which indicates that 0.99% of the variation in the COVID-19 deaths is explained by sex. This is a relatively low R\^2 coefficient, suggesting that this model may not be a good or accurate fit for the data set. The majority of the variability remains unexplained.
 
-The R\^2 coefficient for the age model is 0.30, which indiciates that 30% of 
-the variation in the COVID-19 deaths is explained by age, specifically their 
-age group. This R\^2 coefficient is significantly higher than the R\^2 
-coefficient for the sex model. This means that the age model is able to 
-account for a moderate portion of the variation observed in COVID-19 deaths
-based on age groups. However, there is still a decent portion of the data
-that remains unexplained by the "Age Group" variable.
+The R\^2 coefficient for the age model is 0.30, which indiciates that 30% of the variation in the COVID-19 deaths is explained by age, specifically their age group. This R\^2 coefficient is significantly higher than the R\^2 coefficient for the sex model. This means that the age model is able to account for a moderate portion of the variation observed in COVID-19 deaths based on age groups. However, there is still a decent portion of the data that remains unexplained by the "Age Group" variable.
 
 ```{r}
 newAgeSex <- covidData |>
@@ -192,12 +132,7 @@ newAgeSex <- covidData |>
 newAgeSex
 ```
 
-This new dataset is created to remove all the rows with "All Sex" and "All Age" 
-groups. This way, we can introduce the AiC model to analyze both of the 
-variables as predictors, which wouldn't be accurate if we kept the "All Sex"
-and "All Age" groups. This is because by removing these "All" groups, we ensure 
-that our analysis focuses on specific categories, namely "female" and "male"
-for sex, and individual age groups.
+This new dataset is created to remove all the rows with "All Sex" and "All Age" groups. This way, we can introduce the AiC model to analyze both of the variables as predictors, which wouldn't be accurate if we kept the "All Sex" and "All Age" groups. This is because by removing these "All" groups, we ensure that our analysis focuses on specific categories, namely "female" and "male" for sex, and individual age groups.
 
 ```{r}
 lm_fwd <- lm(`COVID-19 Deaths` ~ `Age Group`, data = newAgeSex) 
@@ -217,9 +152,7 @@ tidy(AgeSexlm)
 $$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
 Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}$$
 
-
-Holding gender constant, every increase in age group will result in 101.024 increase in mortality
-cases.
+Holding gender constant, every increase in age group will result in 101.024 increase in mortality cases.
 
 ```{r}
 #| label: visualization
@@ -259,16 +192,7 @@ Provide results from your analysis that answer your research question. Reminder,
 
 You are encouraged to provide writing that interprets your results and answers your research question. This includes writing a **scope of inference**. The writing is optional for the draft, but will be a requirement on the final.
 
-**Summary**
-In summary, our research project looked into determining a relationship between factors
-like age and sex with Covid-19 mortality rates. In terms of age, the data indicated
-a result similar to the alternative hypothesis in that older individuals will have
-a higher mortality rate. However, with a R^2 value approximately 30%, that leaves 
-majority of the variability unexplained. In context, this would indicate that old age
-may be a factor in higher morality rates, but there are likely many other factors
-that are also associated with Covid-19 mortality rates. Since our data was collected in a
-manner that was neither random assignment nor random sampling, the results found would 
-not be generalizable and not causal.
+**Summary** In summary, our research project looked into determining a relationship between factors like age and sex with Covid-19 mortality rates. In terms of age, the data indicated a result similar to the alternative hypothesis in that older individuals will have a higher mortality rate. However, with a R\^2 value approximately 30%, that leaves majority of the variability unexplained. In context, this would indicate that old age may be a factor in higher morality rates, but there are likely many other factors that are also associated with Covid-19 mortality rates. Since our data was collected in a manner that was neither random assignment nor random sampling, the results found would not be generalizable and not causal.
 
 #### Workflow + Formatting
 
