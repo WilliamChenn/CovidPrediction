@@ -24,7 +24,7 @@ Given the nature of health data, it is essential to acknowledge and address pote
 
 #### Methodology
 
-The methodology section should include visualizations and summary statistics **relevant to your research question**. You are required to provide writing that explains the trends / patterns the visualization(s) displays as it relates to your research question. This writing can be treated as a "rough draft" for your final, but should also provide enough detail to **state and justify** the choice of statistical method(s) used to answer your research question.
+
 
 **Research Question:** "What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? What about the relationship between sex and COVID-19 mortality rate?"
 
@@ -196,7 +196,7 @@ You are encouraged to provide writing that interprets your results and answers y
 
 **Summary** In summary, our research project looked into determining a relationship between factors like age and sex with Covid-19 mortality rates. In terms of age, the data indicated a result similar to the alternative hypothesis in that older individuals will have a higher mortality rate. However, with a $R^2$ value approximately 30%, that leaves majority of the variability unexplained. In context, this would indicate that old age may be a factor in higher morality rates, but there are likely many other factors that are also associated with Covid-19 mortality rates. Since our data was collected in a manner that was neither random assignment nor random sampling, the results found would not be generalizable and not causal.
 
-In terms of sex, the data seems to suggest that males are more prone to death when it comes to Covid-19 cases. However, with a $R^2$ value of 0.001, that means most of the random variables are unexplained. The implications behind this $R^2$ value is that gender has almost no implication on Covid-19 mortality rate.
+In terms of sex, the data seems to suggest that males are more prone to death when it comes to Covid-19 cases. However, with a $R^2$ value of 0.001, that means most of the random variables are unexplained. The implications behind this $R^2$ value is that gender has minimal effect on Covid-19 mortality rate.
 
 #### Workflow + Formatting
 
