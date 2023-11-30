@@ -29,11 +29,12 @@ Given the nature of health data, it is essential to acknowledge and address pote
 **Research Question:** "What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? What about the relationship between sex and COVID-19 mortality rate?"
 
 ```{r}
+#| label: readingindata
 covidData <- read_csv("data/Covid19Dataset.csv")
 ```
 
 ```{r}
-#｜label: take out all ages, keep only all sex
+#| label: take_out_all_ages,_keep_only_all_sex
 covidData_Ages <- covidData |>
   filter(!str_detect(`Age Group`,"All Ages"),str_detect(Sex, "All Sex"),ignore_case = TRUE)
 covidData_Ages
@@ -42,6 +43,7 @@ covidData_Ages
 Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap. After dropping these rows in the "Ages" columns, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
 
 ```{r}
+#| label: boxplotwithageanddeath
 covidData_Ages |>
 ggplot(
     aes(
@@ -57,7 +59,7 @@ ggplot(
 From our visualization, we can conclude that that the median of COVID-19 Deaths of those 85 years and over is the highest. This trend stays mostly consistent throughout: as the age group increases, the median number of COVID-19 Deaths increase.
 
 ```{r}
-#| label: take_out_all sex and keep only all ages
+#| label: take_out_all_sex_and_keep_only_all_ages
 covidData_sex <- covidData |>
   filter(!str_detect(Sex,"All Sex"),str_detect(`Age Group`,"All Ages"),ignore_case=TRUE)
 
@@ -75,7 +77,7 @@ covidData_sex |>
 For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. We used a barplot to visualize the relationship between total deaths of male compared to females.
 
 ```{r}
-#| label: make age numerical
+#| label: make_age_numerical
 
 newAges <- covidData_Ages |> #make ages numerical from 1-11 and then 
   mutate(`Age Group` = case_when( #take out all ages, keep only all sex
@@ -95,7 +97,7 @@ newAges <- covidData_Ages |> #make ages numerical from 1-11 and then
 ```
 
 ```{r}
-#| label: linear regression equation for both models
+#| label: linear_regression_equation_for_both_models
 modelsex <-linear_reg() |>
   set_engine("lm") |>
   fit(`COVID-19 Deaths` ~ Sex , data = covidData_sex)
@@ -113,6 +115,7 @@ The R\^2 coefficient for the sex model is 0.0099, which indicates that 0.99% of 
 The R\^2 coefficient for the age model is 0.30, which indiciates that 30% of the variation in the COVID-19 deaths is explained by age, specifically their age group. This R\^2 coefficient is significantly higher than the R\^2 coefficient for the sex model. This means that the age model is able to account for a moderate portion of the variation observed in COVID-19 deaths based on age groups. However, there is still a decent portion of the data that remains unexplained by the "Age Group" variable.
 
 ```{r}
+#| label: new_mutated_data
 newAgeSex <- covidData |>
   mutate(`Age Group` = case_when( 
     `Age Group` == "Under 1 year"   ~ 1,
