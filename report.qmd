@@ -1,5 +1,5 @@
 ---
-title: "Project title"
+title: "Covid-19 Report"
 subtitle: "Report"
 format: html
 editor: visual
@@ -149,8 +149,10 @@ AgeSexlm<- linear_reg() |>
 tidy(AgeSexlm)
 ```
 
-$$\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
-Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}$$
+\begin{gather*}
+\widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
+Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}
+\end{gather*}
 
 Holding gender constant, every increase in age group will result in 91.59 increase in mortality cases.
 
