@@ -5,6 +5,7 @@ format: html
 editor: visual
 execute:
   echo: true
+bibliography: references.bib
 ---
 
 ```{r}
@@ -17,6 +18,8 @@ library(MASS)
 ```
 
 ## Introduction and data
+
+[@shanks2012][@caruso2023]
 
 The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the patterns of Covid-19 related mortality in the United States in correlation with demographic factors, specifically age and gender. We decided to delve deeper into specifically age and gender due to historical trends related to mortality rates on previous infectious diseases. For example, the National Library of medicine points to the Spanish Flu of 1918 in which an interesting W shape emerged in regards to mortality rates. Expectingly, older individuals with lower immunity systems had a higher mortality rate than the average at around 0.5%. However, surprisingly the highest mortality rates actually were held by the young adult demographic around 1%, doubling the older generation. This interesting pattern motivated us to delve deeper into age for Covid-19 deaths as well. The Library also mentions that gender is another factor often studied as many viruses appear to interact with different genders' bodies differently. This concept also motivated our group to delve deeper into understanding if gender played a significant role in the mortality rates for COVID-19.
 
