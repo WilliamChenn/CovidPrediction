@@ -18,25 +18,21 @@ library(MASS)
 
 #### Introduction and data
 
-The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the patterns of Covid-19 related mortality in the United States in correlation with demographic factors, specifically age and gender. We decided to delve deeper into specifically age and gender due to historical trends related to mortality rates on previous infectious diseases. For example, the National Library of medicine points to the Spanish Flu of 1918 in which an interesting W shape emerged in regards to mortality rates. Expectingly, older individuals with lower immunity systems had a higher mortality rate than the average at around 0.5%. However, surprisingly the highest mortality rates actually were held by the young adult demographic around 1%, doubling the older generation. This interesting pattern motivated us to delve deeper into age for Covid-19 deaths as well. The Library also mentions that gender is another factor often studied as many viruses appear to interact with different genders’ bodies differently. This concept also motivated our group to delve deeper into understanding if gender played a significant role in the mortality rates for COVID-19.
+The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the patterns of Covid-19 related mortality in the United States in correlation with demographic factors, specifically age and gender. We decided to delve deeper into specifically age and gender due to historical trends related to mortality rates on previous infectious diseases. For example, the National Library of medicine points to the Spanish Flu of 1918 in which an interesting W shape emerged in regards to mortality rates. Expectingly, older individuals with lower immunity systems had a higher mortality rate than the average at around 0.5%. However, surprisingly the highest mortality rates actually were held by the young adult demographic around 1%, doubling the older generation. This interesting pattern motivated us to delve deeper into age for Covid-19 deaths as well. The Library also mentions that gender is another factor often studied as many viruses appear to interact with different genders' bodies differently. This concept also motivated our group to delve deeper into understanding if gender played a significant role in the mortality rates for COVID-19.
 
-Our data is sourced from the CDC’s National Center for Health Statistics (NCHS, 2023). The data was collected and updated every week and covers information within all 50 states of the USA and the District of Columbia. The data counts the number of COVID-19 deaths are based on data stored in the National Vital Statistic System. These observations are then added every week. Each Observation of the dataset represents the count of Covid-19 death in a given week, state, specific age group, and sex. So for every single week, there will be an observation for every combination of every subgroup (state, age, group, and sex). The data is sourced from the CDC's National Center for Health Statistics (NCHS, 2023). Our research question is: What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? This research question allows us to see how Covid-19 mortality rates have changed over time among different age groups which helps us better understand the dynamic of the virus and how the pandemic potentially evolve. The research topic will be to observe trends in COVID-19 deaths given different geographic groups and how these trends evolve over time. We believe that older age groups will have higher mortality rate compared to the rest of the demographic. We also hypothesize that the mortality rates for women will be greater than those for men. The types of variables in my research question include both Categorical and quantitative. Age in this context would be categorical because we are grouping age together and looking at specific age groups. The number of deaths in each observation is Quantitative. Sex and date are all categorical.
+Our data is sourced from the CDC's National Center for Health Statistics (NCHS, 2023). The data was collected and updated every week and covers information within all 50 states of the USA and the District of Columbia. The data counts the number of COVID-19 deaths are based on data stored in the National Vital Statistic System. These observations are then added every week. Each Observation of the dataset represents the count of Covid-19 death in a given week, state, specific age group, and sex. So for every single week, there will be an observation for every combination of every subgroup (state, age, group, and sex). The data is sourced from the CDC's National Center for Health Statistics (NCHS, 2023). Our research question is: What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? This research question allows us to see how Covid-19 mortality rates have changed over time among different age groups which helps us better understand the dynamic of the virus and how the pandemic potentially evolve. The research topic will be to observe trends in COVID-19 deaths given different geographic groups and how these trends evolve over time. We believe that older age groups will have higher mortality rate compared to the rest of the demographic. We also hypothesize that the mortality rates for women will be greater than those for men. The types of variables in my research question include both Categorical and quantitative. Age in this context would be categorical because we are grouping age together and looking at specific age groups. The number of deaths in each observation is Quantitative. Sex and date are all categorical.
 
 Given the nature of health data, it is essential to acknowledge and address potential ethical considerations. The data used in this dataset is anonymized and aggregate, which adheres to the highest standard of privacy. This allows the overarching goal of valuable significant insights while respecting the confidentiality of individuals involved in the dataset.
 
-Ho1: $DeathRate_{old} - DeathRate_{young} = 0$
+$H_{0(1)} :DeathRate_{old} - DeathRate_{young} = 0$
 
-Ha1: $DeathRate_{old} - DeathRate_{young} \neq 0$
+$H_{a(1)}:DeathRate_{old} > DeathRate_{young}$
 
-Ho2: $DeathRate_{females} - DeathRate_{males} = 0$
+$H_{0(2)}: DeathRate_{females} - DeathRate_{males} = 0$
 
-Ha2: $DeathRate_{females} - DeathRate_{males} \neq 0$
-
-
+$H_{a(2)}: DeathRate_{females} - DeathRate_{males} \neq 0$
 
 #### Methodology
-
-
 
 **Research Question:** "What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? What about the relationship between sex and COVID-19 mortality rate?"
 
@@ -164,11 +160,12 @@ AgeSexlm<- linear_reg() |>
 tidy(AgeSexlm)
 ```
 
+```{=tex}
 \begin{gather*}
 \widehat{COVID-19} = -293.83 + 91.59 * AgeGroup -0.598*Gender + 9.434*AgeGroup*Gender \\
 Gender =\begin{cases}1 & \text{Male}\\ 0 & \text{Female}\end{cases}
 \end{gather*}
-
+```
 Holding gender constant, every increase in age group will result in 91.59 increase in mortality cases.
 
 ```{r}
