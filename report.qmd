@@ -16,7 +16,7 @@ library(tidymodels)
 library(MASS)
 ```
 
-#### Introduction and data
+## Introduction and data
 
 The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the patterns of Covid-19 related mortality in the United States in correlation with demographic factors, specifically age and gender. We decided to delve deeper into specifically age and gender due to historical trends related to mortality rates on previous infectious diseases. For example, the National Library of medicine points to the Spanish Flu of 1918 in which an interesting W shape emerged in regards to mortality rates. Expectingly, older individuals with lower immunity systems had a higher mortality rate than the average at around 0.5%. However, surprisingly the highest mortality rates actually were held by the young adult demographic around 1%, doubling the older generation. This interesting pattern motivated us to delve deeper into age for Covid-19 deaths as well. The Library also mentions that gender is another factor often studied as many viruses appear to interact with different genders' bodies differently. This concept also motivated our group to delve deeper into understanding if gender played a significant role in the mortality rates for COVID-19.
 
@@ -32,9 +32,9 @@ $H_{0(2)}: DeathRate_{females} - DeathRate_{males} = 0$
 
 $H_{a(2)}: DeathRate_{females} - DeathRate_{males} \neq 0$
 
-#### Methodology
+## Methodology
 
-**Research Question:** "What is the relationship between age groups and COVID-19 mortality rates in the United States over time, and how have these rates evolved from the start of the pandemic until June 28, 2023? What about the relationship between sex and COVID-19 mortality rate?"
+In order to explore the effects of age and sex with regards to covid-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. We then cleaned and modified the data to help us better fit our models. We then calculated p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression models to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the "All Sex" and "All Age" categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.
 
 ```{r}
 #| label: readingindata
@@ -48,7 +48,11 @@ covidData_Ages <- covidData |>
 covidData_Ages
 ```
 
-Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap. After dropping these rows in the "Ages" columns, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
+Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap.
+
+#### EDA
+
+After dropping these rows in the "Ages" columns, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
 
 ```{r}
 #| label: boxplotwithageanddeath
@@ -82,7 +86,9 @@ covidData_sex |>
     theme(legend.position = "none")
 ```
 
-For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. We used a barplot to visualize the relationship between total deaths of male compared to females.
+For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. The barplot showing the relationship between total dewaths of males compared to females illustrates a higher number of deaths among males.
+
+#### Data Manipulation
 
 ```{r}
 #| label: make_age_numerical
@@ -103,6 +109,8 @@ newAges <- covidData_Ages |> #make ages numerical from 1-11 and then
   ))
 
 ```
+
+#### Model Selection
 
 ```{r}
 #| label: linear_regression_equation_for_both_models
@@ -200,7 +208,7 @@ newAgeSex |>
 
 There is evidence that the relationship between mortality and age is different by gender because the slope of each line of best fit for each gender is different. Male mortality increases by a greater amount for every increment in age group when compared to Female.
 
-#### Results
+## Results
 
 Provide results from your analysis that answer your research question. Reminder, the goal is not calculate every possible statistic and perform every possible procedure for all variables. You should demonstrate that you are proficient at asking meaningful questions and answering them using data, that you are skilled in interpreting and presenting results, and that you can accomplish these tasks using R. More is not better.
 
@@ -210,7 +218,7 @@ You are encouraged to provide writing that interprets your results and answers y
 
 In terms of sex, the data seems to suggest that males are more prone to death when it comes to Covid-19 cases. However, with a $R^2$ value of 0.001, that means most of the random variables are unexplained. The implications behind this $R^2$ value is that gender has minimal effect on Covid-19 mortality rate.
 
-#### Workflow + Formatting
+## Workflow + Formatting
 
 To earn full credit, please be mindful of the following:
 
