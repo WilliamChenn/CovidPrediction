@@ -119,7 +119,43 @@ covidData |>
       y = "Total Covid-19 Deaths"
     )
 ```
-The line plot showing the relationship between covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.
+
+The line plot showing the relationship between covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time. 
+
+```{r}
+#| label: overTime, by age group
+covidData |>
+  mutate(
+    `End Week` = mdy(`End Week`),
+    `Age Group` = fct_relevel(`Age Group`, "Under 1 year")) |>
+  filter(!str_detect(`Age Group`, "All Ages"), ignore_case = TRUE) |>
+  group_by(`Age Group`, `End Week`) |>
+  summarize(TotalDeaths = sum(`COVID-19 Deaths`), .groups = "drop") |>
+  ggplot(aes(
+    x = `End Week`, 
+    y = TotalDeaths, 
+    group = `Age Group`, 
+    color = `Age Group`
+  )) +
+    geom_line() +
+    geom_point(size = 1, alpha = 0.5) +
+    theme(
+      axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+      legend.position = "bottom"
+    ) +
+    scale_x_date(
+      labels = date_format("%b-%y"), 
+      breaks = date_breaks("1 month")
+    ) +
+    labs(
+      title = "COVID-19 Deaths Over Time by Age Group",
+      x = "Date",
+      y = "Total Covid-19 Deaths"
+    )
+
+```
+The line plot showing the relationship between covid-19 deaths of age groups  illustrates consistently higher number of deaths among older age groups.
+
 #### Data Manipulation
 
 ```{r}
