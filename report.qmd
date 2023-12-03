@@ -311,7 +311,7 @@ tidy(AgeSexlm)
 **Table of coefficients for easier visualization:**
 
 | Term                                 | Coefficient | Term                            | Coefficient |
-|----------------------|--------------|-----------------------|--------------|
+|--------------------|----------------|---------------------|----------------|
 | Intercept                            | 0.70330     | Age Group 55-64 Years           | 337.03297   |
 | Age Group 15-24 Years                | 5.98352     | Age Group 65-74 Years           | 570.49451   |
 | Age Group 25-34 Years                | 25.41758    | Age Group 75-84 Years           | 717.50549   |
@@ -334,7 +334,7 @@ Interpreting the **coefficients**:
 
 -   The negative coefficient for the oldest age group's interaction term could be interpreted as indicating that the difference in COVID-19 deaths between sexes becomes less pronounced or even reversed in the very old age groups.
 
-Overall, the model indicates that there is a statistically significant interaction between **`Age Group`** and **`Sex`**. This means that the effect of **`Age Group`** on COVID-19 deaths is different for males and females, and thus it's important to consider these variables together rather than separately. The lower AIC for the model including the interaction suggests it is a better fit for the data than the models without the interaction.
+Overall, the model indicates that there is a statistically significant interaction between **`Age Group`** and **`Sex`**. This means that the effect of **`Age Group`** on COVID-19 deaths is different for males and females, and thus it's important to consider these variables together rather than separately. The lower AIC for the model including the interaction suggests it is a better fit for the data than the models without the interaction. The positive coefficients across age groups\*male showcases that in most age groups, males increases mortality rate.
 
 ## Results
 
@@ -346,7 +346,7 @@ The analysis results are clearly assessed and interesting findings from the anal
 
 ## Discussion
 
-In this section you\'ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. Lastly, this section will include ideas for future work.\
+In this section you'll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. Lastly, this section will include ideas for future work.\
 - one of the limitatio is stated above,
 
 ## Workflow + Formatting
