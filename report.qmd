@@ -91,6 +91,35 @@ covidData_sex |>
 
 For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. The barplot showing the relationship between total dewaths of males compared to females illustrates a higher number of deaths among males.
 
+```{r}
+#| label: overTime, by gender
+covidData |>
+  mutate(`End Week` = mdy(`End Week`)) |>
+  filter(
+    !str_detect(Sex, "All Sex"),
+    str_detect(`Age Group`, "All Ages"),
+    ignore_case = TRUE
+  ) |>
+  group_by(Sex, `End Week`) |>
+  summarize(TotalDeaths = sum(`COVID-19 Deaths`), .groups = "drop") |>
+  ggplot(aes(x = `End Week`, y = TotalDeaths, group = Sex, color = Sex)) +
+    geom_line() +
+    geom_point(size = 1, alpha = 0.5) +
+    theme(
+      axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+      legend.position = "bottom"
+    ) +
+    scale_x_date(
+      labels = date_format("%b-%y"), 
+      breaks = date_breaks("1 month")
+    ) +
+    labs(
+      title = "COVID-19 Deaths Over Time by Sex",
+      x = "Date",
+      y = "Total Covid-19 Deaths"
+    )
+```
+The line plot showing the relationship between covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.
 #### Data Manipulation
 
 ```{r}
