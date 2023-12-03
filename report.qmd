@@ -35,6 +35,8 @@ $H_{0(2)}: DeathRate_{females} - DeathRate_{males} = 0$
 
 $H_{a(2)}: DeathRate_{females} - DeathRate_{males} \neq 0$
 
+## Literature Review
+
 ## Methodology
 
 In order to explore the effects of age and sex with regards to covid-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. We then cleaned and modified the data to help us better fit our models. We then calculated p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression models to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the "All Sex" and "All Age" categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.
