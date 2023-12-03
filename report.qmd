@@ -44,6 +44,8 @@ In order to explore the effects of age and sex with regards to covid-19 mortalit
 covidData <- read_csv("data/Covid19Dataset.csv")
 ```
 
+#### Data Manipulation
+
 ```{r}
 #| label: take_out_all_ages,_keep_only_all_sex
 covidData_Ages <- covidData |>
@@ -51,11 +53,23 @@ covidData_Ages <- covidData |>
 covidData_Ages
 ```
 
-Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to drop all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap.
+```{r}
+#| label: take_out_all_sex_and_keep_only_all_ages
+covidData_sex <- covidData |>
+  filter(!str_detect(Sex,"All Sex"),str_detect(`Age Group`,"All Ages"),ignore_case=TRUE)
+```
+
+Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided make two subDatasets to allow us to separately analyze ages and sex.
+
+-   covidData_Ages drops all observations with "All Ages," which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of "All Sex" because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap.
+
+-   covidData_sex drops all observations with "All Sex," which includes all sexes in each obersvation, which again, wouldn't allow us to visualize relationships between deaths and specific sexes. Then, we also filtered the dataset to include only "All Ages" observations it already includes all age groups. If we included the all the separate age group observations alongside "All ages", then the data would overlap.
 
 #### EDA
 
-After dropping these rows in the "Ages" columns, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
+After Data Manipulation, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
+
+##### BoxPlot comparing mortality rates across age groups
 
 ```{r}
 #| label: boxplotwithageanddeath
@@ -73,11 +87,12 @@ ggplot(
 
 From our visualization, we can conclude that that the median of COVID-19 Deaths of those 85 years and over is the highest. This trend stays mostly consistent throughout: as the age group increases, the median number of COVID-19 Deaths increase.
 
-```{r}
-#| label: take_out_all_sex_and_keep_only_all_ages
-covidData_sex <- covidData |>
-  filter(!str_detect(Sex,"All Sex"),str_detect(`Age Group`,"All Ages"),ignore_case=TRUE)
+We also created a bar plot to compare difference between total COVID-19 related deaths between women and men with the changed dataset.
 
+##### Bar Plot comparing women and men mortality
+
+```{r}
+#| label: barPlot
 covidData_sex |>
   ggplot(aes(x = Sex, y = `COVID-19 Deaths`, fill = Sex)) +
     geom_bar(stat = "identity", width = 0.7) +
@@ -89,7 +104,9 @@ covidData_sex |>
     theme(legend.position = "none")
 ```
 
-For the same reason as above, we filtered the dataset to drop all sex and only keep rows that are all ages so there isn't repetition. The barplot showing the relationship between total dewaths of males compared to females illustrates a higher number of deaths among males.
+The barplot showing the relationship between total deaths of males compared to females illustrates a higher number of deaths among males.
+
+##### Graphs regarding trends over time
 
 ```{r}
 #| label: overTime, by gender
@@ -120,7 +137,7 @@ covidData |>
     )
 ```
 
-The line plot showing the relationship between covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time. 
+The line plot showing the relationship between covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.
 
 ```{r}
 #| label: overTime, by age group
@@ -154,9 +171,8 @@ covidData |>
     )
 
 ```
-The line plot showing the relationship between covid-19 deaths of age groups  illustrates consistently higher number of deaths among older age groups.
 
-#### Data Manipulation
+The line plot showing the relationship between covid-19 deaths of age groups illustrates consistently higher number of deaths among older age groups.
 
 ```{r}
 #| label: make_age_numerical
