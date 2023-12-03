@@ -311,7 +311,7 @@ tidy(AgeSexlm)
 **Table of coefficients for easier visualization:**
 
 | Term                                 | Coefficient | Term                            | Coefficient |
-|--------------------|----------------|---------------------|----------------|
+|-------------------|-----------------|--------------------|-----------------|
 | Intercept                            | 0.70330     | Age Group 55-64 Years           | 337.03297   |
 | Age Group 15-24 Years                | 5.98352     | Age Group 65-74 Years           | 570.49451   |
 | Age Group 25-34 Years                | 25.41758    | Age Group 75-84 Years           | 717.50549   |
@@ -345,6 +345,8 @@ This is where you will discuss your overall finding and describe the key results
 The analysis results are clearly assessed and interesting findings from the analysis are described. Interpretations are used to to support the key findings and conclusions, rather than merely listing, e.g., the interpretation of every model coefficient.
 
 ## Discussion
+
+Our research question aimed to understand the relationship between COVID-19 deaths and demographic factors such as age and sex.
 
 In this section you'll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. Lastly, this section will include ideas for future work.\
 - one of the limitatio is stated above,
