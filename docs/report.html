@@ -134,6 +134,7 @@ div.csl-indent {
   <ul>
   <li><a href="#introduction-and-data" id="toc-introduction-and-data" class="nav-link active" data-scroll-target="#introduction-and-data">Introduction and data</a></li>
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#workflow-formatting" id="toc-workflow-formatting" class="nav-link" data-scroll-target="#workflow-formatting">Workflow + Formatting</a></li>
@@ -170,7 +171,10 @@ div.csl-indent {
 </section>
 <section id="literature-review" class="level2">
 <h2 class="anchored" data-anchor-id="literature-review">Literature Review</h2>
-<p>In the paper, “Role of Sex and Age in Fatal Outcomes of COVID-19: Women and Older Centenarians Are More Resilient,” Caruso et al.&nbsp;analyzes the role of age and sex in the fatal outcome of COVID-19, addressing three questions: (1) whether women have been more resilient than men to the virus, (2) whether centenarians have a lower mortality rate than other older people, and (3) if older centenarians born before 1919 are more resistant to SARS-CoV-2 compared to younger centenarians. The research finds that women are generally more resilient to COVID-19 compared to men, and even stated that men have found to have twice the mortality rate compared to women. The paper found that centenarians didn’t necessarily have lower mortality rate compared to the rest of the population. Finally paper also found that Centenarians who were born before 1919 seemed more resilient compared to other centenarians. Our research question builds on to this article by also analyzing the varibility of mortality rates given different sexes, but by also looking at how these mortality rates vary across different age groups alongside different sexes. Our reserach question will add another layer to the article by analyzing specific age groups of different sexes rather than just looking at the general different genders. <span class="citation" data-cites="caruso2023">(<a href="#ref-caruso2023" role="doc-biblioref">Caruso et al. 2023</a>)</span> ## Methodology</p>
+<p>In the paper, “Role of Sex and Age in Fatal Outcomes of COVID-19: Women and Older Centenarians Are More Resilient,” Caruso et al.&nbsp;analyzes the role of age and sex in the fatal outcome of COVID-19, addressing three questions: (1) whether women have been more resilient than men to the virus, (2) whether centenarians have a lower mortality rate than other older people, and (3) if older centenarians born before 1919 are more resistant to SARS-CoV-2 compared to younger centenarians. The research finds that women are generally more resilient to COVID-19 compared to men, and even stated that men have found to have twice the mortality rate compared to women. The paper found that centenarians didn’t necessarily have lower mortality rate compared to the rest of the population. Finally paper also found that Centenarians who were born before 1919 seemed more resilient compared to other centenarians. Our research question builds on to this article by also analyzing the varibility of mortality rates given different sexes, but by also looking at how these mortality rates vary across different age groups alongside different sexes. Our reserach question will add another layer to the article by analyzing specific age groups of different sexes rather than just looking at the general different genders. <span class="citation" data-cites="caruso2023">(<a href="#ref-caruso2023" role="doc-biblioref">Caruso et al. 2023</a>)</span></p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p>In order to explore the effects of age and sex with regards to Covid-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. We then cleaned and modified the data to help us better fit our models. We then calculated p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression models to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the “All Sex” and “All Age” categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
@@ -401,7 +405,6 @@ Coefficients:
 + 197.43956 \cdot \text{AgeGroup}_{55-64} \cdot \text{Gender} + 258.33516 \cdot \text{AgeGroup}_{65-74} \cdot \text{Gender} \\
 + 194.54945 \cdot \text{AgeGroup}_{75-84} \cdot \text{Gender} - 198.97253 \cdot \text{AgeGroup}_{85+} \cdot \text{Gender} \\
 + 0.14286 \cdot \text{AgeGroup}_{&lt;1} \cdot \text{Gender}\\\\
-
 \text{Gender} =
 \begin{cases}
 1 &amp; \text{if Male} \\
@@ -411,10 +414,10 @@ Coefficients:
 <p><strong>Table of coefficients for easier visualization:</strong></p>
 <table class="table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 26%">
-<col style="width: 24%">
+<col style="width: 39%">
+<col style="width: 13%">
+<col style="width: 34%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">

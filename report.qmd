@@ -302,7 +302,7 @@ tidy(AgeSexlm)
 **Table of coefficients for easier visualization:**
 
 | Term                                 | Coefficient | Term                            | Coefficient |
-|------------------|------------------|-------------------|------------------|
+|--------------------------------------|-------------|---------------------------------|-------------|
 | Intercept                            | 0.70330     | Age Group 55-64 Years           | 337.03297   |
 | Age Group 15-24 Years                | 5.98352     | Age Group 65-74 Years           | 570.49451   |
 | Age Group 25-34 Years                | 25.41758    | Age Group 75-84 Years           | 717.50549   |
