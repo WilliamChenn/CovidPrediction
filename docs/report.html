@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -195,12 +161,6 @@ div.csl-indent {
 
 </header>
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="introduction-and-data" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-and-data">Introduction and data</h2>
 <p><span class="citation" data-cites="shanks2012">(<a href="#ref-shanks2012" role="doc-biblioref">Shanks and Brundage 2012</a>)</span></p>
@@ -213,7 +173,6 @@ div.csl-indent {
 <p>In the paper, “Role of Sex and Age in Fatal Outcomes of COVID-19: Women and Older Centenarians Are More Resilient,” Caruso et al.&nbsp;analyzes the role of age and sex in the fatal outcome of COVID-19, addressing three questions: (1) whether women have been more resilient than men to the virus, (2) whether centenarians have a lower mortality rate than other older people, and (3) if older centenarians born before 1919 are more resistant to SARS-CoV-2 compared to younger centenarians. The research finds that women are generally more resilient to COVID-19 compared to men, and even stated that men have found to have twice the mortality rate compared to women. The paper found that centenarians didn’t necessarily have lower mortality rate compared to the rest of the population. Finally paper also found that Centenarians who were born before 1919 seemed more resilient compared to other centenarians. Our research question builds on to this article by also analyzing the varibility of mortality rates given different sexes, but by also looking at how these mortality rates vary across different age groups alongside different sexes. Our reserach question will add another layer to the article by analyzing specific age groups of different sexes rather than just looking at the general different genders. <span class="citation" data-cites="caruso2023">(<a href="#ref-caruso2023" role="doc-biblioref">Caruso et al. 2023</a>)</span> ## Methodology</p>
 <p>In order to explore the effects of age and sex with regards to Covid-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. We then cleaned and modified the data to help us better fit our models. We then calculated p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression models to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the “All Sex” and “All Age” categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>covidData <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Covid19Dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6552 Columns: 8
 ── Column specification ────────────────────────────────────────────────────────
@@ -228,9 +187,6 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 <section id="data-manipulation" class="level4">
 <h4 class="anchored" data-anchor-id="data-manipulation">Data Manipulation</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>covidData_Ages <span class="ot">&lt;-</span> covidData <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>,<span class="st">"All Ages"</span>),<span class="fu">str_detect</span>(Sex, <span class="st">"All Sex"</span>),<span class="at">ignore_case =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>covidData_Ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,002 × 8
    `Data as of` State    `MMWR Week` `End Week` Sex   `Age Group` `Total Deaths`
@@ -249,10 +205,6 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 # ℹ 1 more variable: `COVID-19 Deaths` &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>covidData_sex <span class="ot">&lt;-</span> covidData <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(Sex,<span class="st">"All Sex"</span>),<span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>,<span class="st">"All Ages"</span>),<span class="at">ignore_case=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided make two sub Datasets to allow us to separately analyze ages and sex.</p>
 <ul>
 <li><p>covidData_Ages drops all observations with “All Ages,” which includes all ages in each observation, which would not allow us to visualize the relationship between COVID-19 deaths and specific age groups. Furthermore, we filtered the dataset to only include the Sex of “All Sex” because it already includes both the female and male data(Female data + male data = All Set Data). If we included the separate female and male observations, then the data would overlap.</p></li>
@@ -265,16 +217,6 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 <section id="boxplot-comparing-mortality-rates-across-age-groups" class="level5">
 <h5 class="anchored" data-anchor-id="boxplot-comparing-mortality-rates-across-age-groups">BoxPlot comparing mortality rates across age groups</h5>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>covidData_Ages <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="at">x =</span> <span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relationship between Age and COVID-19 Deaths"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Deaths Per Week From 01/04/2020 to 06/24/2023"</span>)<span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/boxplotwithageanddeath-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -285,15 +227,6 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 <section id="bar-plot-comparing-women-and-men-mortality" class="level5">
 <h5 class="anchored" data-anchor-id="bar-plot-comparing-women-and-men-mortality">Bar Plot comparing women and men mortality</h5>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>covidData_sex <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> <span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span>, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total COVID-19 Deaths by Sex"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"From 01/04/2020 to 06/24/2023"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Sex"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"COVID-19 Deaths (Thousands)"</span>) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">scale =</span> <span class="fl">1e-3</span>)) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/barPlot-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -303,65 +236,12 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 <section id="graphs-regarding-trends-over-time" class="level5">
 <h5 class="anchored" data-anchor-id="graphs-regarding-trends-over-time">Graphs regarding trends over time</h5>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>covidData <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">End Week</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mdy</span>(<span class="st">`</span><span class="at">End Week</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">str_detect</span>(Sex, <span class="st">"All Sex"</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="st">"All Ages"</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ignore_case =</span> <span class="cn">TRUE</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex, <span class="st">`</span><span class="at">End Week</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">TotalDeaths =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">End Week</span><span class="st">`</span>, <span class="at">y =</span> TotalDeaths, <span class="at">group =</span> Sex, <span class="at">color =</span> Sex)) <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">date_format</span>(<span class="st">"%b-%y"</span>), </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">date_breaks</span>(<span class="st">"1 month"</span>)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"COVID-19 Deaths Over Time by Sex"</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Total Covid-19 Deaths"</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/overTime, by gender-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The line plot showing the relationship between covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.</p>
+<p>The line plot showing the relationship between Covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>covidData <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">End Week</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mdy</span>(<span class="st">`</span><span class="at">End Week</span><span class="st">`</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">fct_relevel</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="st">"Under 1 year"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="st">"All Ages"</span>), <span class="at">ignore_case =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="st">`</span><span class="at">End Week</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">TotalDeaths =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">`</span><span class="at">End Week</span><span class="st">`</span>, </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> TotalDeaths, </span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, </span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">date_format</span>(<span class="st">"%b-%y"</span>), </span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">date_breaks</span>(<span class="st">"1 month"</span>)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"COVID-19 Deaths Over Time by Age Group"</span>,</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Total Covid-19 Deaths"</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/overTime, by age group-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -371,20 +251,12 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 </section>
 <section id="model-selection" class="level4">
 <h4 class="anchored" data-anchor-id="model-selection">Model Selection</h4>
-<p>We selected linear regression as our statistical model. This choice was informed by the nature of our research question and the characteristics of our dataset. Specifically, we aimed to understand how demographic factors – age and sex – are associated with the number of COVID-19 deaths, a continuous numerical variable. Linear regression is particularly well-suited for this purpose as it allows us to quantify the association between these categorical explanatory variables and our continuous outcome variable.</p>
-<p><strong>Model Construction:</strong> We first constructed separate linear regression models for each explanatory variable – one for age groups and one for sex. This approach allowed us to isolate the impact of each factor on COVID-19 mortality rates.</p>
+<p>We selected linear regression as our statistical model. This is because our response variable is a numerical value. Specifically, our goal was to use the model to understand how age and sex are associated with the number of COVID-19 deaths. Linear regression is good for our goal because it allows us to quantify the association between these categorical explanatory variables and our continuous outcome variable.</p>
+<p><strong>Model Construction:</strong> We first constructed separate linear regression models for each explanatory variable – one for age groups and one for sex. This allowed us to isolate the impact of each factor on COVID-19 mortality rates.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>modelsex <span class="ot">&lt;-</span><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> Sex , <span class="at">data =</span> covidData_sex)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(modelsex)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.00992005</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>modelage <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="at">data =</span> covidData_Ages)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(modelage)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3563147</code></pre>
 </div>
@@ -393,23 +265,20 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 <li><p><strong>Sex Model (R² = 0.0099):</strong></p>
 <ul>
 <li>This R² value suggests that approximately 0.99% of the variability in COVID-19 death counts can be explained by the sex of the individuals.</li>
-<li>A low R² like this indicates that sex alone does not strongly predict the number of COVID-19 deaths. In other words, while there may be some difference in COVID-19 deaths between males and females, sex is not a major determinant in the variability of death counts.</li>
+<li>A low R² like this indicates that sex alone does not strongly predict the number of COVID-19 deaths. This means that while there may be some difference in COVID-19 deaths between males and females, sex is not a major determinant in the variability of death counts.</li>
 <li>This finding implies that other factors, not included in this model, play a more significant role in determining COVID-19 mortality rates.</li>
 </ul></li>
 <li><p><strong>Age Group Model (R² = 0.356):</strong></p>
 <ul>
 <li><p>An R² value of 35.6% means that about 35.6% of the variation in COVID-19 deaths can be explained by the age group variable.</p></li>
-<li><p>This is a more substantial proportion compared to the sex model, suggesting that age group is a more significant predictor of COVID-19 deaths than sex.</p></li>
+<li><p>This is a more substantial proportion compared to the sex model, meaning that age group is a more significant predictor of COVID-19 deaths than sex.</p></li>
 <li><p>The higher R² value here indicates that as one moves across different age groups, the variation in COVID-19 death counts changes more noticeably than it does between different sexes.</p></li>
-<li><p>However, an R² of 0.356 also means that a significant portion of the variability (around 64.4%) is still unexplained by the age group variable alone. This unexplained variability might be attributed to other factors not included in the model, such as underlying health conditions, socioeconomic status, geographic location, etc. <strong>LIMITATIONS (WE DONT HAVE ENOUGH INFO)</strong></p></li>
+<li><p>However, an R² of 0.356 also means that a significant portion of the variability (around 64.4%) is still unexplained by the age group variable alone.</p></li>
 </ul></li>
 </ol>
-<p>We then utilize an Akaike Information Criterion (AIC) model comparison to determine whether using both variables (age and sex) in conjunction with each other is more effective in predicting COVID-19 mortality rates than using them independently.</p>
-<p>First a new dataset is created to remove all the rows with “All Sex” and “All Age” groups. This way, we can introduce the AIC model to analyze both of the variables as predictors, which wouldn’t be accurate if we kept the “All Sex” and “All Age” groups. This is because by removing these “All” groups, we ensure that our analysis focuses on specific categories, namely “female” and “male” for sex, and individual age groups.</p>
+<p>We then utilize an AIC model to determine whether using both variables (age and sex) in conjunction with each other is more effective in predicting COVID-19 mortality rates than using them independently.</p>
+<p>First a new dataset is created to remove all the rows with “All Sex” and “All Age” groups. This way, we can introduce the AIC model to analyze both of the variables as predictors, which wouldn’t be accurate if we kept the “All Sex” and “All Age” groups.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>newAgeSex <span class="ot">&lt;-</span> covidData <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(Sex, <span class="st">"All Sex"</span>), <span class="sc">!</span><span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="st">"All Ages"</span>)) </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>newAgeSex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,004 × 8
    `Data as of` State    `MMWR Week` `End Week` Sex   `Age Group` `Total Deaths`
@@ -429,27 +298,16 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_additive <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span> <span class="sc">+</span> Sex, <span class="at">data =</span> newAgeSex)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>aic_additive <span class="ot">&lt;-</span> <span class="fu">AIC</span>(model_additive)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>model_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span> <span class="sc">*</span> Sex, <span class="at">data =</span> newAgeSex)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>aic_interaction <span class="ot">&lt;-</span> <span class="fu">AIC</span>(model_interaction)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare AIC Values</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>aic_additive</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 60474.25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>aic_interaction</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 60423.79</code></pre>
 </div>
 </div>
-<p>Since the AIC of the interaction model is lower, it indicates that there is an interaction effect between <strong><code>Age Group</code></strong> and <strong><code>Sex</code></strong> that is important in predicting COVID-19 deaths.</p>
-<p>Now, we will compare AIC scores using an interaction model to determine whether using both variables (age and sex) in conjunction with each other provides a more effective model for predicting COVID-19 mortality rates than using them independently. The stepwise selection process with AIC will help us evaluate whether adding an interaction term between age and sex significantly improves the model compared to a simpler additive model that only considers the main effects of age and sex.</p>
+<p>Since the AIC of the interaction model is lower, it indicates that there is an interaction between <strong><code>Age Group</code></strong> and <strong><code>Sex</code></strong> that is important in predicting COVID-19 deaths.</p>
+<p>Now, we will compare AIC scores using an interaction model to determine whether using both variables (age and sex) in conjunction with each other provides a more effective model for predicting COVID-19 mortality rates than using them independently. We will use the Step AIC to help us evaluate whether adding an interaction term between age and sex improves the model compared to a simpler additive model that only considers the main effects of age and sex.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lm_fwd <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="at">data =</span> newAgeSex) </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stepAIC</span>(lm_fwd,  <span class="at">scope =</span> <span class="sc">~</span><span class="st">`</span><span class="at">Age Group</span><span class="st">`</span> <span class="sc">*</span> <span class="st">`</span><span class="at">Sex</span><span class="st">`</span>, <span class="at">direction =</span> <span class="st">"forward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=49122.25
 `COVID-19 Deaths` ~ `Age Group`
@@ -500,42 +358,19 @@ Coefficients:
 </div>
 </div>
 <div class="cell" data-label="comparingAdjustedRSquared">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with only Sex</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>model_sex <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> Sex, <span class="at">data =</span> covidData_sex)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>adj_r2_sex <span class="ot">&lt;-</span> <span class="fu">glance</span>(model_sex)<span class="sc">$</span>adj.r.squared</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Adjusted R-squared for Sex model:"</span>, adj_r2_sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R-squared for Sex model: 0.00718502253836661"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with only Age Group</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>model_age <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span>, <span class="at">data =</span> covidData_Ages)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>adj_r2_age <span class="ot">&lt;-</span> <span class="fu">glance</span>(model_age)<span class="sc">$</span>adj.r.squared</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Adjusted R-squared for Age Group model:"</span>, adj_r2_age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R-squared for Age Group model: 0.353081718706214"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model with Age Group and Sex (including interaction)</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>model_age_sex <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span> <span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span> <span class="sc">*</span> Sex, <span class="at">data =</span> newAgeSex)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>adj_r2_age_sex <span class="ot">&lt;-</span> <span class="fu">glance</span>(model_age_sex)<span class="sc">$</span>adj.r.squared</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Adjusted R-squared for Age Group and Sex Interaction model:"</span>, </span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>            adj_r2_age_sex))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adjusted R-squared for Age Group and Sex Interaction model: 0.354517007785536"</code></pre>
 </div>
 </div>
-<p>Because the AIC is lower for models with the two predictors ‘Age Group’ and ‘Sex’, compared to the model with only the ‘Age Group’ model, then the model with both predictors is better-fitting because AIC rewards models that provide a good fit to the data. Models that can explain a large portion of the data’s variation receive a higher score.</p>
+<p>Because the AIC is lower for models with the two predictors ‘Age Group’ and ‘Sex’, compared to the model with only the ‘Age Group’ model, then the model with both predictors is better-fitting because AIC rewards models that provide a good fit to the data.</p>
 <p>Moreover, when comparing adjusted R-Squared values, the interaction model offers a slight improvement over the <strong><code>Age Group</code></strong> model alone. This suggests that considering both age and sex, along with their interaction, provides a more comprehensive understanding of the factors influencing COVID-19 mortality rates.</p>
 <div class="cell" data-lebel="linearModel with both">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>AgeSexlm<span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="st">`</span><span class="at">COVID-19 Deaths</span><span class="st">`</span><span class="sc">~</span> <span class="st">`</span><span class="at">Age Group</span><span class="st">`</span> <span class="sc">*</span> Sex, <span class="at">data =</span> newAgeSex) </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(AgeSexlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 22 × 5
    term                         estimate std.error statistic  p.value
@@ -658,26 +493,26 @@ Coefficients:
 </tr>
 </tbody>
 </table>
-<p>Interpreting the <strong>coefficients</strong>:</p>
+<p>Interpreting the coefficients:</p>
 <ul>
 <li><p>Coefficients for older age groups are generally larger positive values which suggest an increase in COVID-19 deaths as age increases.</p></li>
 <li><p>The small coefficient for <strong><code>SexMale</code></strong> suggests a small increase in deaths for males over females when not considering age groups.</p></li>
-<li><p>Interaction coefficients provide insight into how the effect of being male differs across age groups. For example, middle-aged groups (35-44, 45-54, etc.) show a significant increase in COVID-19 deaths for males, whereas the oldest group (85 and over) shows a decrease.</p></li>
+<li><p>Interaction coefficients shows how the effect of being male differs across age groups. For example, middle-aged groups (35-44, 45-54, etc.) show a significant increase in COVID-19 deaths for males, whereas the oldest group (85 and over) shows a decrease.</p></li>
 <li><p>The negative coefficient for the oldest age group’s interaction term could be interpreted as indicating that the difference in COVID-19 deaths between sexes becomes less pronounced or even reversed in the very old age groups.</p></li>
 </ul>
-<p>Overall, the model indicates that there is a statistically significant interaction between <strong><code>Age Group</code></strong> and <strong><code>Sex</code></strong>. This means that the effect of <strong><code>Age Group</code></strong> on COVID-19 deaths is different for males and females, and thus it’s important to consider these variables together rather than separately. The lower AIC for the model including the interaction suggests it is a better fit for the data than the models without the interaction.</p>
+<p>In essence, the model indicates that there is a significant interaction between <strong><code>Age Group</code></strong> and <strong><code>Sex</code></strong>. This means that the effect of <strong><code>Age Group</code></strong> on COVID-19 deaths is different for males and females, and thus it’s important to consider these variables together rather than separately. The lower AIC for the model including the interaction suggests it is a better fit for the data than the models without the interaction.</p>
 </section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>In our analysis regarding Covid-19, the major leading purpose was to determine the greatest factors that went into mortality rate. To do so, we looked at age and gender, both factors that have historically played a major role in understanding mortality rates for previous viruses. However, it is important to note that it would be unrealistic to expect an extremely high R^2 value since there are a plethora of reasons that go into mortality rate for any given virus. Our finding suggests that gender has minimal impact on Covid-19 mortality rates, while age appears to have a fairly significant impact. However, positive coefficients across age groups*male showcases that in most age groups, if the observation is a male the mortality rate increases. In essence, males have a slightly higher mortality rate compared to women. Our model also showcases that generally, the higher the age group an individual is in, the higher their mortality likelihood. Interestingly, we also observed that these trends are fairly consistent over time based off of our EDA. Our findings can be significant in terms of projecting Covid-19 deaths along with further research regarding viruses of similar nature. In addition, with waves of Covid-19 being expected to constantly arise, these findings would be applicable to further vaccine research as researchers can put a greater emphasis on uncovering treatments for older individuals rather than focusing on gender related treatments.</p>
+<p>In our analysis regarding Covid-19, the major leading purpose was to determine the greatest factors that went into mortality rate. To do so, we looked at age and gender, both factors that have historically played a major role in understanding mortality rates for previous viruses. However, it is important to note that it would be unrealistic to expect an extremely high R^2 value since there are a plethora of reasons that go into mortality rate for any given virus. Our finding suggests that gender has minimal impact on Covid-19 mortality rates, while age appears to have a fairly significant impact. However, positive coefficients across age groups*male showcases that in most age groups, if the observation is a male the mortality rate increases. In essence, our results showcase that the effect of age group on deaths is difference for males and females, indicating that males have a slightly higher mortality rate compared to women. Our model also showcases that generally, the higher the age group an individual is in, the higher their mortality likelihood. Interestingly, we also observed that these trends are fairly consistent over time based off of our EDA. Our findings can be significant in terms of projecting Covid-19 deaths along with further research regarding viruses of similar nature. In addition, with waves of Covid-19 being expected to constantly arise, these findings would be applicable to further vaccine research as researchers can put a greater emphasis on uncovering treatments for older individuals rather than focusing on gender related treatments.</p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <p>Our research question aimed to understand the relationship between COVID-19 deaths and demographic factors such as age and sex. We found that age is a more significant predictor of COVID-19 deaths than sex is. Furthermore, our EDA revealed a consistent increase in median COVID-19 deaths as the age groups increased, with the group age 85 and older displaying the highest median of deaths and the highest number of deaths over time. After analyzing sex as a predictor for our EDA, we observed that there was a higher number of deaths among males as compared to females consistently over time. These trends over time were explored through line plots, displaying consistently higher COVID-19 deaths among males and older age groups.&nbsp;</p>
 <p>Statistically, we employed linear regression models to help quantify the association between our predictors and the COVID-19 deaths. The R^2 values indicated that age group explained a substantial portion of the variability (35.6%) compared to gender alone, which had a lower R^2 of 0.99%. Furthermore, we employed model comparison utilizing Akaike Information Criterion (AIC which favored a model including both age group and sex, which suggested an interaction effect. The AIC for this model was lower than models considering just age and sex alone, indicating an interaction. Finally, coefficients from our final model revealed that the older age groups had larger positive coefficients, which indicates increased COVID-19 deaths with age. The interaction variables and terms demonstrated that the effect of age on COVID-19 deaths varies between sex, emphasizing the significance of considering both of these demographic factors together.&nbsp;</p>
-<p>While our conclusions provided significant insights to public health, we acknowledge limitations of our research. We did not dive into specific factors that could significantly impact COVID-19 deaths, such as health conditions, socioeconomic status, and country of collected dataset, which could have also contributed to the unexplained variability in the COVID-19 deaths. Specifically, our dataset only includes patients in the United States and District of Columbia, so we cannot generalize this data to the entire human population. Furthermore, there may have been underlying health conditions that significantly affected the health of those with COVID-19. Some suggestions for improvement could be that future studies could incorporate various significant health variables to enhance the model's explanatory power, providing a more comprehensive understanding to the COVID-19 death determinants. Future studies could also explore health disparities and behavioral impacts(washing hands, social distancing, taking medicine, etc.) on COVID-19 deaths.&nbsp;</p>
-<p>Our data is considered both reliable and valid, as it adheres to high privacy standards as it is annonymized and aggregate, respecting individual confidentiality. Furthermore, our data is sourced from the CDC's National Center for Health Statistics and is collected and updated every week, covering information within all 50 states of the USA and the District of Columbia. Some ethical consideration that we kept in mind was our use of anonymized and aggregate data. This allowed us to utilize the data set for our research while maintaining the confidentiality of all the patients in the database.&nbsp;</p>
+<p>While our conclusions provided significant insights to public health, we acknowledge limitations of our research. We did not dive into specific factors that could significantly impact COVID-19 deaths, such as health conditions, socioeconomic status, and country of collected dataset, which could have also contributed to the unexplained variability in the COVID-19 deaths. Specifically, our dataset only includes patients in the United States and District of Columbia, so we cannot generalize this data to the entire human population. Furthermore, there may have been underlying health conditions that significantly affected the health of those with COVID-19. Some suggestions for improvement could be that future studies could incorporate various significant health variables to enhance the model’s explanatory power, providing a more comprehensive understanding to the COVID-19 death determinants. Future studies could also explore health disparities and behavioral impacts(washing hands, social distancing, taking medicine, etc.) on COVID-19 deaths.&nbsp;</p>
+<p>Our data is considered both reliable and valid, as it adheres to high privacy standards as it is annonymized and aggregate, respecting individual confidentiality. Furthermore, our data is sourced from the CDC’s National Center for Health Statistics and is collected and updated every week, covering information within all 50 states of the USA and the District of Columbia. Some ethical consideration that we kept in mind was our use of anonymized and aggregate data. This allowed us to utilize the data set for our research while maintaining the confidentiality of all the patients in the database.&nbsp;</p>
 <p>In conclusion, our research enhances the understanding of COVID-19 death patterns, emphasizing the significance of age as a predictor and highlighting sex differences. Suggestions for improvement pave the way for future research to dive deeper into more factors influencing COVID-19 death rates.</p>
 </section>
 <section id="workflow-formatting" class="level2">
