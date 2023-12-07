@@ -175,7 +175,7 @@ div.csl-indent {
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>In order to explore the effects of age and sex with regards to Covid-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. We then cleaned and modified the data to help us better fit our models. We then calculated p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression models to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the “All Sex” and “All Age” categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.</p>
+<p>In order to explore the effects of age and sex with regards to Covid-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. In our analysis, we decided to specifically analyze the variables <code>End Week</code>, <code>Sex</code>, <code>Age Group</code>, and <code>COVID-19 Deaths</code> as these variables are directly related to our research question and objectives. We then cleaned and modified the data to help us better fit our models. We then calculated p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression models to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the “All Sex” and “All Age” categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6552 Columns: 8
@@ -259,10 +259,10 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 <p><strong>Model Construction:</strong> We first constructed separate linear regression models for each explanatory variable – one for age groups and one for sex. This allowed us to isolate the impact of each factor on COVID-19 mortality rates.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.00992005</code></pre>
+<pre><code>[1] "R squared value of sex model: 0.00992005002448675"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3563147</code></pre>
+<pre><code>[1] "R squared value of age group model: 0.356314693625223"</code></pre>
 </div>
 </div>
 <ol type="1">
@@ -303,10 +303,10 @@ dbl (3): MMWR Week, Total Deaths, COVID-19 Deaths
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 60474.25</code></pre>
+<pre><code>[1] "AIC value of additive model: 60474.2465786514"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 60423.79</code></pre>
+<pre><code>[1] "AIC value of interaction model: 60423.7870450313"</code></pre>
 </div>
 </div>
 <p>Since the AIC of the interaction model is lower, it indicates that there is an interaction between <strong><code>Age Group</code></strong> and <strong><code>Sex</code></strong> that is important in predicting COVID-19 deaths.</p>
@@ -508,7 +508,7 @@ Coefficients:
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>In our analysis regarding Covid-19, the major leading purpose was to determine the greatest factors that went into mortality rate. To do so, we looked at age and gender, both factors that have historically played a major role in understanding mortality rates for previous viruses. However, it is important to note that it would be unrealistic to expect an extremely high R^2 value since there are a plethora of reasons that go into mortality rate for any given virus. Our finding suggests that gender has minimal impact on Covid-19 mortality rates, while age appears to have a fairly significant impact. However, positive coefficients across age groups*male showcases that in most age groups, if the observation is a male the mortality rate increases. In essence, our results showcase that the effect of age group on deaths is difference for males and females, indicating that males have a slightly higher mortality rate compared to women. Our model also showcases that generally, the higher the age group an individual is in, the higher their mortality likelihood. Interestingly, we also observed that these trends are fairly consistent over time based off of our EDA. Our findings can be significant in terms of projecting Covid-19 deaths along with further research regarding viruses of similar nature. In addition, with waves of Covid-19 being expected to constantly arise, these findings would be applicable to further vaccine research as researchers can put a greater emphasis on uncovering treatments for older individuals rather than focusing on gender related treatments.</p>
+<p>In our analysis regarding Covid-19, the major leading purpose was to determine the greatest factors that went into mortality rate. To do so, we looked at age and gender, both factors that have historically played a major role in understanding mortality rates for previous viruses. However, it is important to note that it would be unrealistic to expect an extremely high R^2 value since there are a plethora of reasons that go into mortality rate for any given virus. During our model selection process, we decided to use an interaction model between <code>Age Group</code> and <code>sex</code> to conduct our analysis. This is because both AIC values and adjusted R-squared values conclude that analyzing the variables rather than independently is preferable. Moreover, we chose an interactive model over an additive model for the same reason. Our model suggests that gender has minimal impact on Covid-19 mortality rates, while age appears to have a fairly significant impact. However, positive coefficients across age groups*male showcases that in most age groups, if the observation is a male the mortality rate increases. In essence, our results showcase that the effect of age group on deaths is difference for males and females, indicating that males have a slightly higher mortality rate compared to women. Again, positive coeffiecients across higher age group categories indicates that generally, the higher the age group an individual is in, the higher their mortality likelihood. Interestingly, we also observed that these trends are fairly consistent over time based off of our EDA. Our findings can be significant in terms of projecting Covid-19 deaths along with further research regarding viruses of similar nature. In addition, with waves of Covid-19 being expected to constantly arise, these findings would be applicable to further vaccine research as researchers can put a greater emphasis on uncovering treatments for older individuals rather than focusing on gender related treatments.</p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
