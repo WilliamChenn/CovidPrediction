@@ -70,6 +70,7 @@ Now, we will compare AIC scores using an interaction model to determine whether 
 
 <img width="527" alt="Screenshot 2024-06-19 at 1 29 34 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/af43c0d7-a0fd-43a8-a784-90ea44f3a17f">
 <img width="709" alt="Screenshot 2024-06-19 at 1 29 52 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/1332b4d9-e920-4abd-9b6a-6210692cdd7b">
+
 [1] "Adjusted R-squared for Sex model: 0.00718502253836661"
 [1] "Adjusted R-squared for Age Group model: 0.353081718706214"
 [1] "Adjusted R-squared for Age Group and Sex Interaction model: 0.354517007785536"
@@ -91,6 +92,8 @@ Moreover, when comparing adjusted R-Squared values, the interaction model offers
 - The negative coefficient for the oldest age group’s interaction term could be interpreted as indicating that the difference in COVID-19 deaths between sexes becomes less pronounced or even reversed in the very old age groups.
 
 In essence, the model indicates that there is a significant interaction between 'Age Group' and 'Sex'. This means that the effect of 'Age Group' on COVID-19 deaths is different for males and females, and thus it’s important to consider these variables together rather than separately. The lower AIC for the model including the interaction suggests it is a better fit for the data than the models without the interaction.
+
+
 
 
 ## Research Questions
