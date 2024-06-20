@@ -42,7 +42,7 @@ We also created a bar plot to compare the difference between total COVID-19-rela
 <p align="center">
   <img width="785" alt="image" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/8021665f-3e08-4d30-b7c0-120dd482ec2e">
 </p>
-_Note._  The barplot showing the relationship between the total deaths of males compared to females illustrates a higher number of deaths among males.
+_Note._ The barplot showing the relationship between the total deaths of males compared to females illustrates a higher number of deaths among males.
 
 **Graphs regarding trends over time**
 <p align="center">
