@@ -1,5 +1,6 @@
 # Ozone_v._Melanoma_Analysis🌍🏥
-Project Presentation: https://docs.google.com/presentation/d/1NUrXpARbfYUEleM5kn4CVs9BD6nU360qjHn2lP3g0t0/edit?usp=sharing
+Project Presentation: [presentation.pdf](https://github.com/user-attachments/files/15919394/presentation.pdf)
+
 
 # I. Introduction and data
 The global outbreak of COVID-19 has created a need for comprehensive data to understand the impact that the virus held. This research seeks to uncover the patterns of COVID-19-related mortality in the United States in correlation with demographic factors, specifically age and gender. We decided to delve deeper into specifically age and gender due to historical trends related to mortality rates on previous infectious diseases. For example, the National Library of Medicine points to the Spanish Flu of 1918 in which an interesting W shape emerged in regards to mortality rates. Expectingly, older individuals with lower immunity systems had a higher mortality rate than the average at around 0.5%. However, surprisingly the highest mortality rates actually were held by the young adult demographic around 1%, doubling the older generation. This interesting pattern motivated us to delve deeper into age of COVID-19 deaths as well. The Library also mentions that gender is another factor often studied as many viruses appear to interact with different genders’ bodies differently. This concept also motivated our group to delve deeper into understanding if gender played a significant role in the mortality rates for COVID-19.
@@ -14,7 +15,10 @@ In the paper, “Role of Sex and Age in Fatal Outcomes of COVID-19: Women and Ol
 
 # III. Methodology
 In order to explore the effects of age and sex with regard to COVID-19 mortality rates, we first conducted exploratory data analysis to help us visualize and better understand our data. In our analysis, we decided to specifically analyze the variables `End Week`, `Sex`, `Age Group`, and `COVID-19 Deaths` as these variables are directly related to our research question and objectives. We then cleaned and modified the data to help us better fit our models. We then calculated the p-value to test our hypothesis that males and females have different mortality rates and that older people have higher mortality compared to younger people. Next, we employed a linear regression model to assess the impact of sex and gender on COVID-19 mortality rates. To further refine our analysis, we created a new dataset excluding the “All Sex” and “All Age” categories, enabling us to consider both age and sex as predictors without redundancy. Using this dataset, we applied the Akaike Information Criterion (AIC) model selection method to see which predictors would be useful in the model.
-<img width="785" alt="Screenshot 2024-06-19 at 1 23 18 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/1f519138-65b1-44be-9e43-fcf9b58a272c">
+
+<p align="center">
+  <img width="785" alt="Screenshot 2024-06-19 at 1 23 18 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/1f519138-65b1-44be-9e43-fcf9b58a272c">
+</p>
 
 Because the dataset contains all possible combinations of sex and age groups given a specific end week, we decided to make two sub Datasets to allow us to separately analyze ages and sex.
 
@@ -114,4 +118,5 @@ In conclusion, our research enhances the understanding of COVID-19 death pattern
 
 # References
 Caruso, Calogero, Gabriella Marcon, Giulia Accardi, Anna Aiello, Anna Calabrò, Mattia Emanuela Ligotti, Mauro Tettamanti, Claudio Franceschi, and Giuseppina Candore. 2023. “Role of Sex and Age in Fatal Outcomes of COVID-19: Women and Older Centenarians Are More Resilient.” International Journal of Molecular Sciences 24 (3): 2638. https://doi.org/10.3390/ijms24032638.
+
 Shanks, G. Dennis, and John F. Brundage. 2012. “Pathogenic Responses Among Young Adults During the 1918 Influenza Pandemic.” Emerging Infectious Diseases 18 (2): 201–7. https://doi.org/10.3201/eid1802.102042.
