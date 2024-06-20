@@ -30,21 +30,29 @@ Because the dataset contains all possible combinations of sex and age groups giv
 After Data Manipulation, we were able to graph our box plot visualization of the COVID-19 Deaths and each age group.
 
 **BoxPlot comparing mortality rates across age groups:** 
-![image](https://github.com/WilliamChenn/CovidPrediction/assets/85557718/37016740-fe17-43cf-b054-8d6151a10fca)
+<p align="center">
+  <img width="785" alt="image" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/37016740-fe17-43cf-b054-8d6151a10fca">
+</p>
 
 From our visualization, we can conclude that that the median of COVID-19 Deaths of those 85 years and over is the highest. This trend stays mostly consistent throughout: as the age group increases, the median number of COVID-19 Deaths increases.
 
 We also created a bar plot to compare the difference between total COVID-19-related deaths between women and men with the changed dataset.
 
 **Bar Plot comparing women and men mortality**
-![image](https://github.com/WilliamChenn/CovidPrediction/assets/85557718/8021665f-3e08-4d30-b7c0-120dd482ec2e)
-The barplot showing the relationship between the total deaths of males compared to females illustrates a higher number of deaths among males.
+<p align="center">
+  <img width="785" alt="image" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/8021665f-3e08-4d30-b7c0-120dd482ec2e">
+</p>
+_Note._  The barplot showing the relationship between the total deaths of males compared to females illustrates a higher number of deaths among males.
 
 **Graphs regarding trends over time**
-![image](https://github.com/WilliamChenn/CovidPrediction/assets/85557718/011e54a3-f363-4bf0-a5f4-8b08d7734b80)
-The line plot showing the relationship between Covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.
-![image](https://github.com/WilliamChenn/CovidPrediction/assets/85557718/c65dc90b-bea9-4660-a001-f5812cff25a7)
-The line plot showing the relationship between covid-19 deaths of age groups illustrates consistently higher number of deaths among older age groups.
+<p align="center">
+  <img width="785" alt="image" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/011e54a3-f363-4bf0-a5f4-8b08d7734b80">
+</p>
+_Note._ The line plot showing the relationship between Covid-19 deaths of males compared to females illustrates consistently higher number of deaths among males over time.
+<p align="center">
+  <img width="785" alt="image" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/c65dc90b-bea9-4660-a001-f5812cff25a7">
+</p>
+_Note._ The line plot showing the relationship between covid-19 deaths of age groups illustrates consistently higher number of deaths among older age groups.
 
 ## Model Selection
 We selected linear regression as our statistical model. This is because our response variable is a numerical value. Specifically, our goal was to use the model to understand how age and sex are associated with the number of COVID-19 deaths. Linear regression is good for our goal because it allows us to quantify the association between these categorical explanatory variables and our continuous outcome variable.
@@ -68,14 +76,22 @@ We selected linear regression as our statistical model. This is because our resp
 We then utilize an AIC model to determine whether using both variables (age and sex) in conjunction with each other is more effective in predicting COVID-19 mortality rates than using them independently.
 
 First, a new dataset is created to remove all the rows with 'All Sex' and 'All Age' groups. This way, we can introduce the AIC model to analyze both of the variables as predictors, which wouldn’t be accurate if we kept the 'All Sex' and 'All Age' groups.
-<img width="735" alt="Screenshot 2024-06-19 at 1 28 42 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/7f4cff3a-0342-47cf-a1a4-f182b308e4cd">
+<p align="center">
+  <img width="735" alt="Screenshot 2024-06-19 at 1 28 42 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/7f4cff3a-0342-47cf-a1a4-f182b308e4cd">
+</p>
+
 
 Since the AIC of the interaction model is lower, it indicates that there is an interaction between 'Age' 'Group' and 'Sex' that is important in predicting COVID-19 deaths.
 
 Now, we will compare AIC scores using an interaction model to determine whether using both variables (age and sex) in conjunction with each other provides a more effective model for predicting COVID-19 mortality rates than using them independently. We will use Step AIC to help us evaluate whether adding an interaction term between age and sex improves the model compared to a simpler additive model that only considers the main effects of age and sex.
 
-<img width="527" alt="Screenshot 2024-06-19 at 1 29 34 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/af43c0d7-a0fd-43a8-a784-90ea44f3a17f">
-<img width="709" alt="Screenshot 2024-06-19 at 1 29 52 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/1332b4d9-e920-4abd-9b6a-6210692cdd7b">
+<p align="center">
+  <img width="527" alt="Screenshot 2024-06-19 at 1 29 34 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/af43c0d7-a0fd-43a8-a784-90ea44f3a17f">
+</p>
+<p align="center">
+  <img width="709" alt="Screenshot 2024-06-19 at 1 29 52 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/1332b4d9-e920-4abd-9b6a-6210692cdd7b">
+</p>
+
 
 [1] "Adjusted R-squared for Sex model: 0.00718502253836661"
 
@@ -86,9 +102,16 @@ Now, we will compare AIC scores using an interaction model to determine whether 
 Because the AIC is lower for models with the two predictors ‘Age Group’ and ‘Sex’, compared to the model with only the ‘Age Group’ model, then the model with both predictors is better-fitting because AIC rewards models that provide a good fit to the data.
 
 Moreover, when comparing adjusted R-Squared values, the interaction model offers a slight improvement over the 'Age Group' model alone. This suggests that considering both age and sex, along with their interaction, provides a more comprehensive understanding of the factors influencing COVID-19 mortality rates.
-<img width="650" alt="Screenshot 2024-06-19 at 1 30 28 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/48c69ea1-489d-4989-9bb9-702d95c48f03">
-<img width="768" alt="Screenshot 2024-06-19 at 1 30 45 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/dfae7a3d-181c-4872-8796-5e4d5319d32c">
-<img width="830" alt="Screenshot 2024-06-19 at 1 30 58 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/9303df4d-d5ca-4d2c-8c68-fc9f7a036475">
+<p align="center">
+  <img width="650" alt="Screenshot 2024-06-19 at 1 30 28 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/48c69ea1-489d-4989-9bb9-702d95c48f03">
+</p>
+<p align="center">
+  <img width="768" alt="Screenshot 2024-06-19 at 1 30 45 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/dfae7a3d-181c-4872-8796-5e4d5319d32c">
+</p>
+<p align="center">
+  <img width="830" alt="Screenshot 2024-06-19 at 1 30 58 PM" src="https://github.com/WilliamChenn/CovidPrediction/assets/85557718/9303df4d-d5ca-4d2c-8c68-fc9f7a036475">
+</p>
+
 **Interpreting the coefficients:**
 
 - Coefficients for older age groups are generally larger positive values which suggest an increase in COVID-19 deaths as age increases.
